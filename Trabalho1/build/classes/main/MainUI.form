@@ -47,9 +47,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="jbtnModelos" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="botaoModelos" min="-2" pref="130" max="-2" attributes="0"/>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
-                  <Component id="jbtnRecursos" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="botaoRecursos" min="-2" pref="130" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -59,8 +59,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtnModelos" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="jbtnRecursos" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="botaoModelos" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="botaoRecursos" alignment="3" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="52" max="32767" attributes="0"/>
               </Group>
@@ -68,7 +68,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jbtnModelos">
+        <Component class="javax.swing.JButton" name="botaoModelos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modelos"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -76,10 +76,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnModelosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoModelosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnRecursos">
+        <Component class="javax.swing.JButton" name="botaoRecursos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Recursos"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -87,7 +87,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnRecursosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRecursosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

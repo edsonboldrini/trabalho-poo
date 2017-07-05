@@ -49,9 +49,9 @@ public class jfModelos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTModelos = new javax.swing.JTable();
-        jbtnNovoModelo = new javax.swing.JButton();
-        jbtnEditarModelo = new javax.swing.JButton();
-        jbtnInstanciarModelo = new javax.swing.JButton();
+        botaoNovoModelo = new javax.swing.JButton();
+        botaoEditarModelo = new javax.swing.JButton();
+        botaoInstanciarModelo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(450, 200));
@@ -87,16 +87,16 @@ public class jfModelos extends javax.swing.JFrame {
             jTModelos.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        jbtnNovoModelo.setText("Novo");
-        jbtnNovoModelo.addActionListener(new java.awt.event.ActionListener() {
+        botaoNovoModelo.setText("Novo");
+        botaoNovoModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnNovoModeloActionPerformed(evt);
+                botaoNovoModeloActionPerformed(evt);
             }
         });
 
-        jbtnEditarModelo.setText("Editar");
+        botaoEditarModelo.setText("Editar");
 
-        jbtnInstanciarModelo.setText("Novo Projeto");
+        botaoInstanciarModelo.setText("Novo Projeto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,11 +107,11 @@ public class jfModelos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnNovoModelo)
+                        .addComponent(botaoNovoModelo)
                         .addGap(44, 44, 44)
-                        .addComponent(jbtnEditarModelo)
+                        .addComponent(botaoEditarModelo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnInstanciarModelo)))
+                        .addComponent(botaoInstanciarModelo)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,9 +119,9 @@ public class jfModelos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnNovoModelo)
-                    .addComponent(jbtnEditarModelo)
-                    .addComponent(jbtnInstanciarModelo))
+                    .addComponent(botaoNovoModelo)
+                    .addComponent(botaoEditarModelo)
+                    .addComponent(botaoInstanciarModelo))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -130,11 +130,11 @@ public class jfModelos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnNovoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovoModeloActionPerformed
+    private void botaoNovoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoModeloActionPerformed
         // TODO add your handling code here:
         jfNovoModelo obj = new jfNovoModelo();
         obj.setVisible(true);
-    }//GEN-LAST:event_jbtnNovoModeloActionPerformed
+    }//GEN-LAST:event_botaoNovoModeloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,10 +172,10 @@ public class jfModelos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoEditarModelo;
+    private javax.swing.JButton botaoInstanciarModelo;
+    private javax.swing.JButton botaoNovoModelo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTModelos;
-    private javax.swing.JButton jbtnEditarModelo;
-    private javax.swing.JButton jbtnInstanciarModelo;
-    private javax.swing.JButton jbtnNovoModelo;
     // End of variables declaration//GEN-END:variables
 }

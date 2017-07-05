@@ -26,8 +26,8 @@ public class MainUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpMain = new javax.swing.JDesktopPane();
-        jbtnModelos = new javax.swing.JButton();
-        jbtnRecursos = new javax.swing.JButton();
+        botaoModelos = new javax.swing.JButton();
+        botaoRecursos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -35,24 +35,24 @@ public class MainUI extends javax.swing.JFrame {
         jdpMain.setOpaque(false);
         jdpMain.setPreferredSize(new java.awt.Dimension(400, 230));
 
-        jbtnModelos.setText("Modelos");
-        jbtnModelos.setPreferredSize(new java.awt.Dimension(130, 130));
-        jbtnModelos.addActionListener(new java.awt.event.ActionListener() {
+        botaoModelos.setText("Modelos");
+        botaoModelos.setPreferredSize(new java.awt.Dimension(130, 130));
+        botaoModelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnModelosActionPerformed(evt);
+                botaoModelosActionPerformed(evt);
             }
         });
 
-        jbtnRecursos.setText("Recursos");
-        jbtnRecursos.setPreferredSize(new java.awt.Dimension(130, 130));
-        jbtnRecursos.addActionListener(new java.awt.event.ActionListener() {
+        botaoRecursos.setText("Recursos");
+        botaoRecursos.setPreferredSize(new java.awt.Dimension(130, 130));
+        botaoRecursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnRecursosActionPerformed(evt);
+                botaoRecursosActionPerformed(evt);
             }
         });
 
-        jdpMain.setLayer(jbtnModelos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpMain.setLayer(jbtnRecursos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpMain.setLayer(botaoModelos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpMain.setLayer(botaoRecursos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpMainLayout = new javax.swing.GroupLayout(jdpMain);
         jdpMain.setLayout(jdpMainLayout);
@@ -60,9 +60,9 @@ public class MainUI extends javax.swing.JFrame {
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpMainLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jbtnModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jbtnRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jdpMainLayout.setVerticalGroup(
@@ -70,8 +70,8 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(jdpMainLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -89,17 +89,17 @@ public class MainUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModelosActionPerformed
+    private void botaoModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoModelosActionPerformed
         // TODO add your handling code here:
         jfModelos obj = new jfModelos(banco);
         obj.setVisible(true);
-    }//GEN-LAST:event_jbtnModelosActionPerformed
+    }//GEN-LAST:event_botaoModelosActionPerformed
 
-    private void jbtnRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRecursosActionPerformed
+    private void botaoRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRecursosActionPerformed
         // TODO add your handling code here:
         jfRecursos obj = new jfRecursos();
         obj.setVisible(true);
-    }//GEN-LAST:event_jbtnRecursosActionPerformed
+    }//GEN-LAST:event_botaoRecursosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,8 +137,8 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbtnModelos;
-    private javax.swing.JButton jbtnRecursos;
+    private javax.swing.JButton botaoModelos;
+    private javax.swing.JButton botaoRecursos;
     private javax.swing.JDesktopPane jdpMain;
     // End of variables declaration//GEN-END:variables
 }
