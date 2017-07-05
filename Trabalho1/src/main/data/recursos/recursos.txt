@@ -1,3 +1,0 @@
-recurso1,tipo1,descricao1
-recurso2,tipo2,descricao2
-recrush3,tipo3,descricao3

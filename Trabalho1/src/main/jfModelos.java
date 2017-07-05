@@ -6,7 +6,7 @@
 package main;
 
 import javax.swing.table.DefaultTableModel;
-import java.io.*;
+import java.sql.ResultSet;
 /**
  *
  * @author garym
@@ -16,24 +16,24 @@ public class jfModelos extends javax.swing.JFrame {
     /**
      * Creates new form jfModelos
      */
-    public jfModelos() {
+    private static ConexaoBD banco;
+    
+    public jfModelos(ConexaoBD b) {
         initComponents();
-        preencherTabela("src/main/data/modelos/modelos.txt");
+        this.banco = b;
+        preencherTabela(banco);
     }
     
-    private void preencherTabela(String src){
+    private void preencherTabela(ConexaoBD banco){
         DefaultTableModel dtmModelos = (DefaultTableModel)jTModelos.getModel();
         try{
-            BufferedReader buff = new BufferedReader(new FileReader(src));
-            String[] dados = new String[1];
+            ResultSet dados = banco.select("SELECT * FROM MODELO");
             
-            while(buff.ready()){
-                String linha= buff.readLine();
-                dados[0] = linha;
-                dtmModelos.addRow(dados);
+            while(dados.next()){
+                Object[] linha = {dados.getInt("ID_Modelo"), dados.getString("Nome")};
+                dtmModelos.addRow(linha);
             }
-            buff.close();
-        }catch(IOException ioe){
+        }catch(Exception ioe){
             ioe.printStackTrace();
         }
     }
@@ -166,7 +166,7 @@ public class jfModelos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfModelos().setVisible(true);
+                new jfModelos(banco).setVisible(true);
             }
         });
     }

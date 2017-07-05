@@ -25,7 +25,7 @@ public class jfRecursos extends javax.swing.JFrame {
     }
     
     private void preencherTabela(String src){
-        DefaultTableModel dtmModelos = (DefaultTableModel)jTRecursos.getModel();
+        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
         try{
             BufferedReader buff = new BufferedReader(new FileReader(src));
             String[] dados = new String[3];
@@ -33,7 +33,7 @@ public class jfRecursos extends javax.swing.JFrame {
             while(buff.ready()){
                 String linha= buff.readLine();
                 dados = linha.split(",");
-                dtmModelos.addRow(dados);
+                dtmRecursos.addRow(dados);
             }
             buff.close();
         }catch(IOException ioe){
@@ -60,6 +60,7 @@ public class jfRecursos extends javax.swing.JFrame {
         jlRecurso = new javax.swing.JLabel();
         jlTipo = new javax.swing.JLabel();
         jlDescricao = new javax.swing.JLabel();
+        jbtnExcluirRecurso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(450, 250));
@@ -96,6 +97,13 @@ public class jfRecursos extends javax.swing.JFrame {
 
         jlDescricao.setText("Descrição");
 
+        jbtnExcluirRecurso.setText("Excluir Recurso");
+        jbtnExcluirRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnExcluirRecursoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,9 +112,6 @@ public class jfRecursos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnNovoRecurso))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,7 +123,13 @@ public class jfRecursos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlDescricao)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtnNovoRecurso, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbtnExcluirRecurso, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -136,9 +147,11 @@ public class jfRecursos extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnNovoRecurso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnExcluirRecurso)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,6 +164,26 @@ public class jfRecursos extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jbtnExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExcluirRecursoActionPerformed
+        int selecionado = jTRecursos.getSelectedRow();
+        System.out.println(selecionado);
+        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
+        try{
+            BufferedReader buff = new BufferedReader(new FileReader("src/main/data/recursos/recursos.txt"));
+            String[] dados = new String[3];
+            
+            while(buff.ready()){
+                String linha= buff.readLine();
+                dados = linha.split(",");
+                dtmRecursos.addRow(dados);
+            }
+            buff.close();
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        dtmRecursos.removeRow(selecionado); 
+    }//GEN-LAST:event_jbtnExcluirRecursoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +227,7 @@ public class jfRecursos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbtnExcluirRecurso;
     private javax.swing.JButton jbtnNovoRecurso;
     private javax.swing.JLabel jlDescricao;
     private javax.swing.JLabel jlRecurso;
