@@ -1,14 +1,17 @@
 package banco;
 
+import main.ConexaoBD;
+
 /**
  *
  * @author garym
  */
-public class CategoriaRecurso {
+public class CategoriaRecurso extends Entidade{
     private int id;
     private String descricao;
     
     public CategoriaRecurso(int i, String d){
+        super("SQL VAI AQUI");
         this.id = i;
         this.descricao = d;
     }

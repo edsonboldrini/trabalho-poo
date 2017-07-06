@@ -5,10 +5,20 @@
  */
 package banco;
 
+import main.ConexaoBD;
+
 /**
  *
  * @author garym
  */
-public class Entidade {
+public abstract class Entidade {
+    private String insert;
     
+    public Entidade(String i){
+        this.insert = i;
+    }
+    
+    public void salvar(ConexaoBD banco){
+        banco.insert(insert);
+    }
 }
