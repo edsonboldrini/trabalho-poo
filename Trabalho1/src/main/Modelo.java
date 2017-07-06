@@ -29,7 +29,10 @@ import banco.*;
     
     @Override
     public void salvar(ConexaoBD banco){
-        super.salvar(banco);
-        /* inserir as atividades */
+        super.salvar(banco);// salva na tabela modelo
+        // salvar atividades na tabela atividade
+        for(ObFluxo of : ol){
+            of.salvar();
+        }
     }
 }

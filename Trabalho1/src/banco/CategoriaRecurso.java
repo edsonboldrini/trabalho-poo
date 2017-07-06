@@ -16,6 +16,10 @@ public class CategoriaRecurso extends Entidade{
         this.descricao = d;
     }
     
+    public int getId(){
+        return this.id;
+    }
+    
     @Override
     public String toString(){
         return this.descricao;
