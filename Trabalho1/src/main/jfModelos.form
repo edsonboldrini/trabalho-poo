@@ -31,11 +31,11 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="300" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jbtnNovoModelo" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoNovoModelo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jbtnEditarModelo" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoEditarModelo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jbtnInstanciarModelo" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoInstanciarModelo" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="37" max="32767" attributes="0"/>
@@ -47,9 +47,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jbtnNovoModelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtnEditarModelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtnInstanciarModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoNovoModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoEditarModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoInstanciarModelo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="157" max="-2" attributes="0"/>
@@ -90,20 +90,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jbtnNovoModelo">
+    <Component class="javax.swing.JButton" name="botaoNovoModelo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnNovoModeloActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoNovoModeloActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbtnEditarModelo">
+    <Component class="javax.swing.JButton" name="botaoEditarModelo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbtnInstanciarModelo">
+    <Component class="javax.swing.JButton" name="botaoInstanciarModelo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo Projeto"/>
       </Properties>

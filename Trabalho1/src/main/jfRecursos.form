@@ -39,26 +39,26 @@
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField1" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Component id="jlRecurso" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoNomeRecurso" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="labelRecurso" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Component id="jlTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoTipoRecurso" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="labelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jlDescricao" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="labelDescricao" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoCategoriaRecurso" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jbtnNovoRecurso" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbtnExcluirRecurso" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoNovoRecurso" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoExcluirRecurso" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -71,22 +71,22 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoTextoNomeRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoTextoTipoRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoTextoCategoriaRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jbtnNovoRecurso" min="-2" max="-2" attributes="0"/>
+              <Component id="botaoNovoRecurso" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="165" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jbtnExcluirRecurso" min="-2" max="-2" attributes="0"/>
+              <Component id="botaoExcluirRecurso" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -135,44 +135,44 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jbtnNovoRecurso">
+    <Component class="javax.swing.JButton" name="botaoNovoRecurso">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Adicionar Recurso"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar Recurso"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="campoTextoNomeRecurso">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoNomeRecursoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="campoTextoTipoRecurso">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="campoTextoCategoriaRecurso">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoCategoriaRecursoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlRecurso">
+    <Component class="javax.swing.JLabel" name="labelRecurso">
       <Properties>
         <Property name="text" type="java.lang.String" value="Recurso"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlTipo">
+    <Component class="javax.swing.JLabel" name="labelTipo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tipo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlDescricao">
+    <Component class="javax.swing.JLabel" name="labelDescricao">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbtnExcluirRecurso">
+    <Component class="javax.swing.JButton" name="botaoExcluirRecurso">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir Recurso"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnExcluirRecursoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirRecursoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
