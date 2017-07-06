@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import main.ConexaoBD;
 import banco.TipoAtividade;
 import javax.swing.table.DefaultTableModel;
+import main.Modelo;
 import main.ObFluxo;
 import main.ObFluxoList;
 import main.RecursosList;
@@ -186,9 +187,11 @@ public class jfNovoModelo extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(botaoEscolherRecursos)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(botaoEscolherRecursos)
+                                    .addGap(32, 32, 32))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
                             .addComponent(botaoCriarModelo)))
@@ -249,6 +252,15 @@ public class jfNovoModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarModeloActionPerformed
+        /*
+        new modelo: nome, lista de atividades
+        inserir modelo no banco:
+            inserir as atividades no banco
+                inserir os recursos necessarios no banco
+        
+        */
+        
+        Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
         
     }//GEN-LAST:event_botaoCriarModeloActionPerformed
 
