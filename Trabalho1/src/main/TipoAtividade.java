@@ -1,4 +1,3 @@
-
 package main;
 
 /**
@@ -10,8 +9,8 @@ public class TipoAtividade {
     private String Nome;
     
     public TipoAtividade(int i, String n){
-        id = i;
-        Nome = n;
+        this.id = i;
+        this.Nome = n;
     }
     
     @Override

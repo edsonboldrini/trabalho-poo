@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import main.ConexaoBD;
 /**
  *
@@ -21,7 +22,7 @@ public class jfModelos extends javax.swing.JFrame {
     
     public jfModelos(ConexaoBD b) {
         initComponents();
-        this.banco = b;
+        banco = b;
         preencherTabela(banco);
     }
     
@@ -34,8 +35,7 @@ public class jfModelos extends javax.swing.JFrame {
                 Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
                 dtmModelos.addRow(linha);
             }
-        }catch(Exception ioe){
-            ioe.printStackTrace();
+        }catch(SQLException ioe){
         }
     }
     

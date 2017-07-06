@@ -3,6 +3,7 @@ package main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexaoBD {
@@ -12,7 +13,7 @@ public class ConexaoBD {
         try{
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, user, pass);
-        } catch(Exception e){
+        } catch(ClassNotFoundException | SQLException e){
             System.out.println(e.getMessage());
         }
     }
@@ -21,8 +22,7 @@ public class ConexaoBD {
         try{
             Statement stm = c.createStatement();
             return stm.executeUpdate(comando);
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
             return 0;
         }
     }
@@ -32,7 +32,7 @@ public class ConexaoBD {
             Statement stm = c.createStatement();
             ResultSet resultado = stm.executeQuery(comando);
             return resultado;
-        } catch(Exception e){
+        } catch(SQLException e){
             return null;
         }
     }
