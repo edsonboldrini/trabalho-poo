@@ -261,7 +261,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         */
         
         Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
-        
+        m.salvar(banco);
     }//GEN-LAST:event_botaoCriarModeloActionPerformed
 
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed

@@ -11,7 +11,8 @@ public class CategoriaRecurso extends Entidade{
     private String descricao;
     
     public CategoriaRecurso(int i, String d){
-        super("SQL VAI AQUI");
+        super("INSERT INTO CATEGORIA_RECURSO(DESCRICAO)"
+              + "VALUES(" + d + ")");
         this.id = i;
         this.descricao = d;
     }
