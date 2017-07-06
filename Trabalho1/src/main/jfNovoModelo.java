@@ -5,17 +5,36 @@
  */
 package main;
 
+import java.sql.ResultSet;
+import java.util.LinkedList;
+
 /**
  *
  * @author garym
  */
 public class jfNovoModelo extends javax.swing.JFrame {
-
+    private static ConexaoBD banco;
     /**
      * Creates new form jfNovoModelo
      */
-    public jfNovoModelo() {
+    public jfNovoModelo(ConexaoBD b) {
         initComponents();
+        banco = b;
+        preencherComboBox("");
+    }
+    
+    private void preencherComboBox(String src){
+        ResultSet dados = banco.select("SELECT * FROM TIPO_ATIVIDADE");
+        LinkedList lista = new LinkedList();
+        
+        try{
+            while(dados.next()){
+                lista.add(new TipoAtividade(dados.getInt("ID_TipoAtividade"), dados.getString("Nome")));
+                comboBoxTipo.addItem(lista.getLast());
+            }
+        } catch(Exception e){
+            
+        }
     }
 
     /**
@@ -27,18 +46,98 @@ public class jfNovoModelo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        campoNomeModelo = new javax.swing.JTextField();
+        labelNomeModelo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaAtividades = new javax.swing.JTable();
+        labelAtividade = new javax.swing.JLabel();
+        campoNomeAtividade = new javax.swing.JTextField();
+        labelTipo = new javax.swing.JLabel();
+        comboBoxTipo = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        labelNomeModelo.setText("Nome do modelo:");
+
+        tabelaAtividades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Passo", "Descrição", "Tipo", "Recursos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaAtividades);
+        if (tabelaAtividades.getColumnModel().getColumnCount() > 0) {
+            tabelaAtividades.getColumnModel().getColumn(0).setResizable(false);
+            tabelaAtividades.getColumnModel().getColumn(1).setResizable(false);
+            tabelaAtividades.getColumnModel().getColumn(2).setResizable(false);
+            tabelaAtividades.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        labelAtividade.setText("Atividade:");
+
+        labelTipo.setText("Tipo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(labelNomeModelo)
+                            .addGap(14, 14, 14)
+                            .addComponent(campoNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelAtividade)
+                                .addComponent(labelTipo))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoNomeAtividade)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNomeModelo)
+                    .addComponent(campoNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAtividade)
+                    .addComponent(campoNomeAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTipo)
+                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -74,11 +173,19 @@ public class jfNovoModelo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfNovoModelo().setVisible(true);
+                new jfNovoModelo(banco).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoNomeAtividade;
+    private javax.swing.JTextField campoNomeModelo;
+    private javax.swing.JComboBox<Object> comboBoxTipo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelAtividade;
+    private javax.swing.JLabel labelNomeModelo;
+    private javax.swing.JLabel labelTipo;
+    private javax.swing.JTable tabelaAtividades;
     // End of variables declaration//GEN-END:variables
 }

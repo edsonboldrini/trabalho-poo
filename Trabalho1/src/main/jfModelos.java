@@ -30,7 +30,7 @@ public class jfModelos extends javax.swing.JFrame {
             ResultSet dados = banco.select("SELECT * FROM MODELO");
             
             while(dados.next()){
-                Object[] linha = {dados.getInt("ID_Modelo"), dados.getString("Nome")};
+                Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
                 dtmModelos.addRow(linha);
             }
         }catch(Exception ioe){
@@ -132,7 +132,7 @@ public class jfModelos extends javax.swing.JFrame {
 
     private void botaoNovoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoModeloActionPerformed
         // TODO add your handling code here:
-        jfNovoModelo obj = new jfNovoModelo();
+        jfNovoModelo obj = new jfNovoModelo(banco);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoNovoModeloActionPerformed
 

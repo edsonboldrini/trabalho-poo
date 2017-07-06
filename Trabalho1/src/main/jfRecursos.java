@@ -77,7 +77,7 @@ public class jfRecursos extends javax.swing.JFrame {
         jTRecursos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTRecursos);
 
-        botaoNovoRecurso.setText("Adicionar Recurso");
+        botaoNovoRecurso.setText("Cadastrar Recurso");
 
         campoTextoNomeRecurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

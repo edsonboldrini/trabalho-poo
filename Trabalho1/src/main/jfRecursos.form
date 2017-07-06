@@ -137,7 +137,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="botaoNovoRecurso">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Adicionar Recurso"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar Recurso"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNomeRecurso">
