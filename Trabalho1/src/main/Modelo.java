@@ -4,13 +4,10 @@ package main;
 import banco.TipoAtividade;
 
  public class Modelo {
-     
-    private String modeloId;
     private String modeloNome;
     private ObFluxoList ol;
     
-    public Modelo(String mId, String mNome, ObFluxoList mOl){
-        this.modeloId= mId;
+    public Modelo(String mNome, ObFluxoList mOl){
         this.modeloNome= mNome;
         this.ol= mOl;
     }
