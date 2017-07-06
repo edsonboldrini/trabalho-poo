@@ -16,21 +16,20 @@ import main.ConexaoBD;
  * @author garym
  */
 public class jfEscolherRecursos extends javax.swing.JFrame {
-    private static ConexaoBD banco;
+    private ConexaoBD banco;
+    private jfNovoModelo pai;
     /**
      * Creates new form jfEscolherRecursos
-     * @param b
      */
-    public jfEscolherRecursos(ConexaoBD b) {
+    public jfEscolherRecursos(){}
+    
+    public jfEscolherRecursos(ConexaoBD b, jfNovoModelo framePai) {
         initComponents();
         banco = b;
+        pai = framePai;
         preencherComboBox();
     }
-
-    @Override
-    public void dispose() {
-        super.dispose(); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     private void preencherComboBox(){
         ResultSet dados = banco.select("SELECT * FROM CATEGORIA_RECURSO");
         
@@ -157,7 +156,7 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         // TODO add your handling code here:
         CategoriaRecurso cr = (CategoriaRecurso)comboBoxRecursos.getSelectedItem();
         DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
-        Object[] linha = {cr};
+        CategoriaRecurso[] linha = {cr};
         dtm.addRow(linha);
     }//GEN-LAST:event_botaoAdicionarActionPerformed
 
@@ -172,7 +171,16 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
 
     private void botaoOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOKActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        int rowsNumber = dtm.getRowCount();
+        int i;
+        CategoriaRecurso[] cr = new CategoriaRecurso[rowsNumber];
         
+        for(i = 0; i <  rowsNumber; i++){
+            cr[i] = (CategoriaRecurso)dtm.getValueAt(i, 0);
+        }
+        
+        pai.preencherTabela(cr);
         this.dispose();
     }//GEN-LAST:event_botaoOKActionPerformed
 
@@ -206,7 +214,7 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfEscolherRecursos(banco).setVisible(true);
+                new jfEscolherRecursos().setVisible(true);
             }
         });
     }

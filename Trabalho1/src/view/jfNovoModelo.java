@@ -5,27 +5,31 @@
  */
 package view;
 
+import banco.CategoriaRecurso;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import main.ConexaoBD;
 import banco.TipoAtividade;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author garym
  */
 public class jfNovoModelo extends javax.swing.JFrame {
-    private static ConexaoBD banco;
+    private ConexaoBD banco;
     /**
      * Creates new form jfNovoModelo
-     * @param b
      */
+    
+    public jfNovoModelo(){}
+    
     public jfNovoModelo(ConexaoBD b) {
         initComponents();
         banco = b;
         preencherComboBox();
     }
-    
+   
     private void preencherComboBox(){
         ResultSet dados = banco.select("SELECT * FROM TIPO_ATIVIDADE");
         
@@ -34,6 +38,14 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 comboBoxTipo.addItem(new TipoAtividade(dados.getInt("ID_TipoAtividade"), dados.getString("Nome")));
             }
         } catch(SQLException e){
+        }
+    }
+    
+    public void preencherTabela(Object[] o){
+        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        for(CategoriaRecurso cr : (CategoriaRecurso[]) o){
+            CategoriaRecurso[] linha = {cr};
+            dtm.addRow(linha);
         }
     }
 
@@ -55,13 +67,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
         labelTipo = new javax.swing.JLabel();
         comboBoxTipo = new javax.swing.JComboBox<>();
         botaoAdicionarAtividade = new javax.swing.JButton();
-        labelRecursos = new javax.swing.JLabel();
         botaoCriarModelo = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaRecursos = new javax.swing.JList<>();
         botaoEscolherRecursos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaRecursosSelecionados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -110,16 +121,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
             }
         });
 
-        labelRecursos.setText("Recursos:");
-
         botaoCriarModelo.setText("Salvar modelo");
         botaoCriarModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCriarModeloActionPerformed(evt);
             }
         });
-
-        jScrollPane2.setViewportView(listaRecursos);
 
         botaoEscolherRecursos.setText("Escolher recursos");
         botaoEscolherRecursos.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +137,28 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        tabelaRecursosSelecionados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Recursos"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaRecursosSelecionados.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tabelaRecursosSelecionados);
+        if (tabelaRecursosSelecionados.getColumnModel().getColumnCount() > 0) {
+            tabelaRecursosSelecionados.getColumnModel().getColumn(0).setResizable(false);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,40 +166,40 @@ public class jfNovoModelo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaoCriarModelo))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelTipo)
+                                .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botaoEscolherRecursos)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(botaoCriarModelo)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNomeModelo)
                                 .addGap(14, 14, 14)
-                                .addComponent(campoNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelAtividade)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(campoNomeAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(campoNomeModelo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelTipo)
-                                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botaoEscolherRecursos, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelRecursos)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(12, 12, 12)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(labelAtividade)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
+                                        .addComponent(campoNomeAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 1, Short.MAX_VALUE)))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(97, 97, 97)
                 .addComponent(botaoAdicionarAtividade)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,26 +214,24 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAtividade)
                     .addComponent(campoNomeAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelRecursos)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoEscolherRecursos))
-                    .addComponent(jSeparator2))
-                .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(botaoEscolherRecursos)))
+                .addGap(18, 18, 18)
                 .addComponent(botaoAdicionarAtividade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
                 .addComponent(botaoCriarModelo)
-                .addGap(5, 5, 5))
+                .addContainerGap())
         );
 
         pack();
@@ -220,7 +247,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
     private void botaoEscolherRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEscolherRecursosActionPerformed
         // TODO add your handling code here:
-        jfEscolherRecursos obj = new jfEscolherRecursos(banco);
+        jfEscolherRecursos obj = new jfEscolherRecursos(banco, this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoEscolherRecursosActionPerformed
 
@@ -254,7 +281,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfNovoModelo(banco).setVisible(true);
+                new jfNovoModelo().setVisible(true);
             }
         });
     }
@@ -267,14 +294,13 @@ public class jfNovoModelo extends javax.swing.JFrame {
     private javax.swing.JTextField campoNomeModelo;
     private javax.swing.JComboBox<Object> comboBoxTipo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelAtividade;
     private javax.swing.JLabel labelNomeModelo;
-    private javax.swing.JLabel labelRecursos;
     private javax.swing.JLabel labelTipo;
-    private javax.swing.JList<String> listaRecursos;
     private javax.swing.JTable tabelaAtividades;
+    private javax.swing.JTable tabelaRecursosSelecionados;
     // End of variables declaration//GEN-END:variables
 }

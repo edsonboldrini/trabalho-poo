@@ -18,7 +18,9 @@ public class jfModelos extends javax.swing.JFrame {
     /**
      * Creates new form jfModelos
      */
-    private static ConexaoBD banco;
+    private ConexaoBD banco;
+    
+    public jfModelos(){}
     
     public jfModelos(ConexaoBD b) {
         initComponents();
@@ -167,7 +169,7 @@ public class jfModelos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfModelos(banco).setVisible(true);
+                new jfModelos().setVisible(true);
             }
         });
     }
