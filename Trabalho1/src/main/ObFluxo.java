@@ -1,28 +1,40 @@
 
 package main;
 
+import banco.TipoAtividade;
+
 
 public class ObFluxo {
     private String nome;
-    private String id;
-    private String tipo;
+    private TipoAtividade tipo;
     private RecursosList recursos;
     
-    public ObFluxo(String n, String i, String tp, RecursosList r){
+    public ObFluxo(String n, TipoAtividade tp, RecursosList r){
         this.nome= n;
-        this.id=i;
         this.tipo= tp;
         this.recursos=r;
     }
     public ObFluxo(){
         
     }
-
+    
+    public String getNome(){
+        return this.nome;
+    }
+    
+    public TipoAtividade getTipo(){
+        return this.tipo;
+    }
+    
+    public RecursosList getRecursos(){
+        return this.recursos;
+    }
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoAtividade tipo) {
         this.tipo = tipo;
     }
     

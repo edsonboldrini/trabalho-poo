@@ -24,8 +24,12 @@ public class jfModelos extends javax.swing.JFrame {
     
     public jfModelos(ConexaoBD b) {
         initComponents();
-        banco = b;
+        this.banco = b;
         preencherTabela(banco);
+    }
+    
+    public ConexaoBD getConexao(){
+        return this.banco;
     }
     
     private void preencherTabela(ConexaoBD banco){
@@ -135,7 +139,7 @@ public class jfModelos extends javax.swing.JFrame {
 
     private void botaoNovoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoModeloActionPerformed
         // TODO add your handling code here:
-        jfNovoModelo obj = new jfNovoModelo(banco);
+        jfNovoModelo obj = new jfNovoModelo(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoNovoModeloActionPerformed
 

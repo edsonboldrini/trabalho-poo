@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import main.ConexaoBD;
 import banco.TipoAtividade;
 import javax.swing.table.DefaultTableModel;
+import main.ObFluxo;
+import main.ObFluxoList;
+import main.RecursosList;
 
 /**
  *
@@ -18,18 +21,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class jfNovoModelo extends javax.swing.JFrame {
     private ConexaoBD banco;
+    private jfModelos pai;
+    private ObFluxoList atividades;
     /**
      * Creates new form jfNovoModelo
      */
     
     public jfNovoModelo(){}
     
-    public jfNovoModelo(ConexaoBD b) {
+    public jfNovoModelo(jfModelos framePai) {
         initComponents();
-        banco = b;
+        this.banco = framePai.getConexao();
+        this.pai = framePai;
+        this.atividades = new ObFluxoList();
         preencherComboBox();
     }
-   
+    
+    public ConexaoBD getConexao(){
+        return this.banco;
+    }
+    
     private void preencherComboBox(){
         ResultSet dados = banco.select("SELECT * FROM TIPO_ATIVIDADE");
         
@@ -84,14 +95,14 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Passo", "Descrição", "Tipo", "Recursos"
+                "Descrição", "Tipo", "Recursos"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,12 +113,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaAtividades.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaAtividades);
         if (tabelaAtividades.getColumnModel().getColumnCount() > 0) {
             tabelaAtividades.getColumnModel().getColumn(0).setResizable(false);
             tabelaAtividades.getColumnModel().getColumn(1).setResizable(false);
             tabelaAtividades.getColumnModel().getColumn(2).setResizable(false);
-            tabelaAtividades.getColumnModel().getColumn(3).setResizable(false);
         }
 
         labelAtividade.setText("Atividade:");
@@ -238,16 +249,32 @@ public class jfNovoModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarModeloActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoCriarModeloActionPerformed
 
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed
-        // TODO add your handling code here:
+        RecursosList recursosSelecionados = new RecursosList();
+        int rowCount = tabelaRecursosSelecionados.getRowCount();
+        if(rowCount > 0){
+            DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+            for(int i = 0; i <  rowCount; i++){
+                recursosSelecionados.addLast( (CategoriaRecurso) dtm.getValueAt(i, 0));
+            }
+        }
+        ObFluxo atividade = new ObFluxo(campoNomeAtividade.getText(),(TipoAtividade)comboBoxTipo.getSelectedItem(),recursosSelecionados);
+        this.atividades.add(atividade);
+        
+        Object[] linha = {atividade.getNome(),atividade.getTipo(),atividade.getRecursos()};
+        DefaultTableModel dtm = (DefaultTableModel) tabelaAtividades.getModel();
+        dtm.addRow(linha);
+        
+        campoNomeAtividade.setText("");
+        dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        dtm.setRowCount(0);
     }//GEN-LAST:event_botaoAdicionarAtividadeActionPerformed
 
     private void botaoEscolherRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEscolherRecursosActionPerformed
-        // TODO add your handling code here:
-        jfEscolherRecursos obj = new jfEscolherRecursos(banco, this);
+        jfEscolherRecursos obj = new jfEscolherRecursos(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoEscolherRecursosActionPerformed
 

@@ -1,6 +1,8 @@
 
 package main;
 
+import banco.TipoAtividade;
+
  public class Modelo {
      
     private String modeloId;
@@ -21,7 +23,7 @@ package main;
     public void alterarNomeAtividade_pos(int pos, String novoNome){   
         this.ol.get(pos).setNome(novoNome);
     }
-    public void alterarTipoAtividade_pos(int pos, String novoTipo){
+    public void alterarTipoAtividade_pos(int pos, TipoAtividade novoTipo){
       (this.ol).get(pos).setTipo(novoTipo);
     }  
 }

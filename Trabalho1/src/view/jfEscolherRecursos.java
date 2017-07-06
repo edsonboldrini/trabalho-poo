@@ -23,10 +23,10 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
      */
     public jfEscolherRecursos(){}
     
-    public jfEscolherRecursos(ConexaoBD b, jfNovoModelo framePai) {
+    public jfEscolherRecursos(jfNovoModelo framePai) {
         initComponents();
-        banco = b;
-        pai = framePai;
+        this.banco = framePai.getConexao();
+        this.pai = framePai;
         preencherComboBox();
     }
     

@@ -20,7 +20,7 @@ public class MainUI extends javax.swing.JFrame {
     
     public MainUI() {
         initComponents();
-        banco = new ConexaoBD("jdbc:postgresql://localhost:5432/trabPOO1","postgres","batman");
+        this.banco = new ConexaoBD("jdbc:postgresql://localhost:5432/trabPOO1","postgres","batman");
     }
 
     @SuppressWarnings("unchecked")
