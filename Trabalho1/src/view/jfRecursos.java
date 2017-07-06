@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package view;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -64,7 +64,6 @@ public class jfRecursos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(450, 250));
-        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jTRecursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
