@@ -5,10 +5,11 @@
  */
 package main;
 
-/**
- *
- * @author JoséGuilherme
- */
-public class ObFluxoList {
-    
+
+import java.util.LinkedList;
+
+public class ObFluxoList extends LinkedList <ObFluxo>{
+
 }
+
+

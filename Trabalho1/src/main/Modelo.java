@@ -19,7 +19,7 @@ package main;
        this.ol.remove(pos);
     }
     public void alterarNomeAtividade_pos(int pos, String novoNome){   
-       (this.ol).get(pos).setNome(novoNome);
+        this.ol.get(pos).setNome(novoNome);
     }
     public void alterarTipoAtividade_pos(int pos, String novoTipo){
       (this.ol).get(pos).setTipo(novoTipo);
