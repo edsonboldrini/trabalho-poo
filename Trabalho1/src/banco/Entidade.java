@@ -12,7 +12,7 @@ import main.ConexaoBD;
  * @author garym
  */
 public abstract class Entidade {
-    private String insert;
+    private final String insert;
     
     public Entidade(String i){
         this.insert = i;
