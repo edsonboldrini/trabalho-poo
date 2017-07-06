@@ -1,10 +1,11 @@
 
 package main;
 
-import banco.TipoAtividade;
+import banco.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-
-public class ObFluxo {
+public class ObFluxo extends banco.Atividade {
     private String nome;
     private TipoAtividade tipo;
     private RecursosList recursos;
@@ -14,6 +15,7 @@ public class ObFluxo {
         this.tipo= tp;
         this.recursos=r;
     }
+    
     public ObFluxo(){
         
     }
@@ -38,4 +40,20 @@ public class ObFluxo {
         this.tipo = tipo;
     }
     
+    // banco
+    
+    @Override
+    public void salvar(ConexaoBD banco) throws SQLException{
+        super.salvar(banco); // salva na tabela Atividade
+        ResultSet d = banco.select("SELECT ID_ATIVIDADE FROM ATIVIDADE");
+        d.last();
+        int id_atividade = d.getInt("ID_Atividade");
+        int id_categoria;
+        // salva as relacoes entre recursos e atividades
+        for(CategoriaRecurso cr : recursos){
+            id_categoria = ((CategoriaRecurso)cr).getId();
+            Atividade_Recurso ar = new Atividade_Recurso(id_categoria, id_atividade);
+            ar.salvar();
+        }
+    }
 }
