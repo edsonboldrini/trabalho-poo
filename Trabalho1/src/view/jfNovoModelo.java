@@ -8,7 +8,7 @@ package view;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import main.ConexaoBD;
-import main.TipoAtividade;
+import banco.TipoAtividade;
 
 /**
  *

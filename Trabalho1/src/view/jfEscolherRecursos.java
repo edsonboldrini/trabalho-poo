@@ -7,7 +7,8 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import main.CategoriaRecurso;
+import javax.swing.table.DefaultTableModel;
+import banco.CategoriaRecurso;
 import main.ConexaoBD;
 
 /**
@@ -25,7 +26,11 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         banco = b;
         preencherComboBox();
     }
-    
+
+    @Override
+    public void dispose() {
+        super.dispose(); //To change body of generated methods, choose Tools | Templates.
+    }
     private void preencherComboBox(){
         ResultSet dados = banco.select("SELECT * FROM CATEGORIA_RECURSO");
         
@@ -62,10 +67,25 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         labelRecursosSelecionados.setText("Recursos selecionados:");
 
         botaoAdicionar.setText("Adicionar");
+        botaoAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarActionPerformed(evt);
+            }
+        });
 
         botaoRemover.setText("Remover");
+        botaoRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRemoverActionPerformed(evt);
+            }
+        });
 
         botaoOK.setText("OK");
+        botaoOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoOKActionPerformed(evt);
+            }
+        });
 
         tabelaRecursosSelecionados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,16 +142,39 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(labelRecursosSelecionados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoRemover)
-                    .addComponent(botaoOK))
-                .addGap(2, 2, 2))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoOK)
+                    .addComponent(botaoRemover))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
+        // TODO add your handling code here:
+        CategoriaRecurso cr = (CategoriaRecurso)comboBoxRecursos.getSelectedItem();
+        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        Object[] linha = {cr};
+        dtm.addRow(linha);
+    }//GEN-LAST:event_botaoAdicionarActionPerformed
+
+    private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        try{
+            dtm.removeRow(tabelaRecursosSelecionados.getSelectedRow());
+        } catch(Exception e){
+        }
+    }//GEN-LAST:event_botaoRemoverActionPerformed
+
+    private void botaoOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOKActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+    }//GEN-LAST:event_botaoOKActionPerformed
 
     /**
      * @param args the command line arguments
