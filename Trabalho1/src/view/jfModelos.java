@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import main.ConexaoBD;
 /**
  *
@@ -17,12 +18,18 @@ public class jfModelos extends javax.swing.JFrame {
     /**
      * Creates new form jfModelos
      */
-    private static ConexaoBD banco;
+    private ConexaoBD banco;
+    
+    public jfModelos(){}
     
     public jfModelos(ConexaoBD b) {
         initComponents();
         this.banco = b;
         preencherTabela(banco);
+    }
+    
+    public ConexaoBD getConexao(){
+        return this.banco;
     }
     
     private void preencherTabela(ConexaoBD banco){
@@ -34,8 +41,7 @@ public class jfModelos extends javax.swing.JFrame {
                 Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
                 dtmModelos.addRow(linha);
             }
-        }catch(Exception ioe){
-            ioe.printStackTrace();
+        }catch(SQLException ioe){
         }
     }
     
@@ -133,7 +139,7 @@ public class jfModelos extends javax.swing.JFrame {
 
     private void botaoNovoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoModeloActionPerformed
         // TODO add your handling code here:
-        jfNovoModelo obj = new jfNovoModelo(banco);
+        jfNovoModelo obj = new jfNovoModelo(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoNovoModeloActionPerformed
 
@@ -167,7 +173,7 @@ public class jfModelos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfModelos(banco).setVisible(true);
+                new jfModelos().setVisible(true);
             }
         });
     }
