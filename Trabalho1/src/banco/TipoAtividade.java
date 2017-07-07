@@ -15,6 +15,10 @@ public class TipoAtividade extends Entidade{
         this.Nome = n;
     }
     
+    public int getId(){
+        return this.id;
+    }
+    
     @Override
     public String toString(){
         return this.Nome;
