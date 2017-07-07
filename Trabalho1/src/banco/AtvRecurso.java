@@ -9,6 +9,9 @@ package banco;
  *
  * @author edson
  */
-public class AtvRecurso {
-    
+public class AtvRecurso extends Entidade {
+
+    public AtvRecurso(int id_categoria, int id_atividade) {
+        super("SQL aqui");
+    }
 }

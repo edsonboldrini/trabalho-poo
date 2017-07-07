@@ -1,6 +1,7 @@
 
 package main;
 
+import banco.ConexaoBD;
 import banco.*;
 
  public class Modelo extends banco.Modelo{
@@ -32,7 +33,7 @@ import banco.*;
         super.salvar(banco);// salva na tabela modelo
         // salvar atividades na tabela atividade
         for(ObFluxo of : ol){
-            of.salvar();
+            of.salvar(banco);
         }
     }
 }
