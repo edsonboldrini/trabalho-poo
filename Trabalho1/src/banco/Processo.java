@@ -7,7 +7,7 @@ public class Processo extends Entidade {
     
     public Processo(int idModelo, String nome){
         super("INSERT INTO PROCESSO(ID_MODELO,NOME)"
-                + "VALUES("+idModelo+","+nome);
+                + "VALUES("+idModelo+","+nome +")");
         
     }
     public Processo(int id, int idModelo, String nome){

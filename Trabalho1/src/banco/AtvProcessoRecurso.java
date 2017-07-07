@@ -6,7 +6,7 @@ public class AtvProcessoRecurso extends Entidade {
     
     public AtvProcessoRecurso(int idRecurso,int idAtividadeProcesso){
         super("INSERT INTO ATVPROCESSO_RECURSO(ID_RECURSO,ID_ATVPROCESSO)"
-                + "VALUES("+ idRecurso + "," + idAtividadeProcesso);
+                + "VALUES("+ idRecurso + "," + idAtividadeProcesso + ")");
         
         this.idAtividadeProcesso=idAtividadeProcesso;
         this.idRecurso= idRecurso;

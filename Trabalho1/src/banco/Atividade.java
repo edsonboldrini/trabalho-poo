@@ -9,7 +9,7 @@ public class Atividade extends Entidade{
     
     public Atividade(String n, int idModel, int idTipo){
         super("INSERT INTO ATIVIDADE(NOME, ID_MODELO, ID_TIPOATIVIDADE)"
-             + "VALUES (" + n + "," + idModel + "," + idTipo);
+             + "VALUES (" + n + "," + idModel + "," + idTipo + ")");
         
     }
     public Atividade(String n, int idAtiv, int idTipo, int idModel){

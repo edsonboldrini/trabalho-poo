@@ -7,6 +7,6 @@ public class AtvRecurso extends Entidade{
     
     public AtvRecurso(int idCategoria, int idAtividade){
         super("INSERT INTO ATIVIDADE_RECURSO(ID_CATEGORIA,ID_ATIVIDADE)"
-                + "VALUES("+idCategoria+","+idAtividade);
+                + "VALUES("+idCategoria+","+idAtividade + ")");
     }
 }
