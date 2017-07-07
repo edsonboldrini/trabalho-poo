@@ -1,9 +1,5 @@
 package banco;
 
-/**
- *
- * @author garym
- */
 public class TipoAtividade extends Entidade{
     private int id;
     private String Nome;

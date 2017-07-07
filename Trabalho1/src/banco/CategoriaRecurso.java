@@ -1,15 +1,8 @@
 package banco;
 
-import main.ConexaoBD;
-
-/**
- *
- * @author garym
- */
 public class CategoriaRecurso extends Entidade{
     private int id;
     private String descricao;
-    
     
     public CategoriaRecurso(String d){
             super("INSERT INTO CATEGORIA_RECURSO(DESCRICAO)"
