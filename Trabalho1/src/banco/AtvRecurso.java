@@ -1,11 +1,19 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package banco;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 4e0190a... atualizando
 /**
  *
  * @author edson
  */
+<<<<<<< HEAD
 public class AtvRecurso extends Entidade {
 
     public AtvRecurso(int id_categoria, int id_atividade) {
@@ -24,4 +32,8 @@ public class AtvRecurso extends Entidade{
 >>>>>>> 8972ad4998592904a2cf80b99b6472bba0d7c78d
 >>>>>>> 9ea09191e8204a3ae973b1490e535d68620f0887
     }
+=======
+public class AtvRecurso {
+    
+>>>>>>> parent of 4e0190a... atualizando
 }
