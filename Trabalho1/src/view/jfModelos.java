@@ -35,6 +35,12 @@ public class jfModelos extends javax.swing.JFrame {
         }
     }
     
+    public void resetTabela(){
+        DefaultTableModel dtm = (DefaultTableModel) jTModelos.getModel();
+        dtm.setRowCount(0);
+        this.preencherTabela(banco);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

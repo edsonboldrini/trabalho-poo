@@ -4,6 +4,7 @@ package main;
 import banco.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ObFluxo extends banco.Atividade {
     private String nome;
@@ -50,16 +51,21 @@ public class ObFluxo extends banco.Atividade {
         int id_categoria;
         
         try {
-            d.last();
-            id_atividade = d.getInt("ID_Atividade");
+            ArrayList al = new ArrayList();
+            while(d.next()){
+                al.add(d);
+            }
+            id_modelo = al.size();
+            
+            for(Object cr : recursos){
+                id_categoria = ((CategoriaRecurso)cr).getId();
+                AtvRecurso ar = new AtvRecurso(id_categoria, id_atividade);
+                ar.salvar(banco);
+            }
         } catch (SQLException ex) {
         }
         
         // salva as relacoes entre recursos e atividades
-        for(Object cr : recursos){
-            id_categoria = ((CategoriaRecurso)cr).getId();
-            AtvRecurso ar = new AtvRecurso(id_categoria, id_atividade);
-            ar.salvar(banco);
-        }
+        
     }
 }

@@ -267,7 +267,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
         m.salvar(banco);
         System.out.println("modelo adicionado: " + m.getNome());
-        // atualizar tabela
+        pai.resetTabela();
         this.dispose();
     }//GEN-LAST:event_botaoSalvarModeloActionPerformed
 

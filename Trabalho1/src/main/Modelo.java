@@ -48,7 +48,6 @@ import java.util.ArrayList;
                 al.add(d);
             }
             id_modelo = al.size();
-            System.out.println("modelo buscado no banco: " + id_modelo);
             
             for(ObFluxo of : ol){
                 of.salvar(banco, id_modelo);
