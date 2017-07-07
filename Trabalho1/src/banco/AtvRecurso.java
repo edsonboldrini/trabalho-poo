@@ -7,12 +7,16 @@ package banco;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 4e0190a... atualizando
 =======
 >>>>>>> parent of 4e0190a... atualizando
 /**
  *
  * @author edson
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 public class AtvRecurso extends Entidade {
@@ -41,4 +45,8 @@ public class AtvRecurso {
 public class AtvRecurso {
     
 >>>>>>> parent of 010e8c9... merge
+=======
+public class AtvRecurso {
+    
+>>>>>>> parent of 4e0190a... atualizando
 }
