@@ -5,6 +5,8 @@
  */
 package banco;
 
+import main.ConexaoBD;
+
 /**
  *
  * @author garym

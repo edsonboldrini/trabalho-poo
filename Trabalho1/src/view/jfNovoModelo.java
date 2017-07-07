@@ -8,7 +8,7 @@ package view;
 import banco.CategoriaRecurso;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import banco.ConexaoBD;
+import main.ConexaoBD;
 import banco.TipoAtividade;
 import javax.swing.table.DefaultTableModel;
 import main.Modelo;

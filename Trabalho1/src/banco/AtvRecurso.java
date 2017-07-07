@@ -14,6 +14,7 @@ package banco;
  * @author edson
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class AtvRecurso extends Entidade {
 
     public AtvRecurso(int id_categoria, int id_atividade) {
@@ -36,4 +37,8 @@ public class AtvRecurso extends Entidade{
 public class AtvRecurso {
     
 >>>>>>> parent of 4e0190a... atualizando
+=======
+public class AtvRecurso {
+    
+>>>>>>> parent of 010e8c9... merge
 }

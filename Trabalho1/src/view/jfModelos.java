@@ -8,7 +8,7 @@ package view;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import banco.ConexaoBD;
+import main.ConexaoBD;
 /**
  *
  * @author garym

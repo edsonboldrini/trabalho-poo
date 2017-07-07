@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import banco.CategoriaRecurso;
-import banco.ConexaoBD;
+import main.ConexaoBD;
 
 /**
  *

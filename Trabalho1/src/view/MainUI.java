@@ -5,7 +5,7 @@
  */
 package view;
 
-import banco.ConexaoBD;
+import main.ConexaoBD;
 
 /**
  *
