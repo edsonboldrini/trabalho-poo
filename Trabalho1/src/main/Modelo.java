@@ -2,6 +2,8 @@
 package main;
 
 import banco.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
  public class Modelo extends banco.Modelo{
     private String modeloNome;
@@ -31,8 +33,17 @@ import banco.*;
     public void salvar(ConexaoBD banco){
         super.salvar(banco);// salva na tabela modelo
         // salvar atividades na tabela atividade
+        ResultSet d = banco.select("SELECT ID_MODELO FROM MODELO");
+        int id_modelo = 0;
+        
+        try {
+            d.last();
+            id_modelo = d.getInt("ID_Modelo");
+        } catch (SQLException ex) {
+        }
+        
         for(ObFluxo of : ol){
-            of.salvar(banco);
+            of.salvar(banco, id_modelo);
         }
     }
 }

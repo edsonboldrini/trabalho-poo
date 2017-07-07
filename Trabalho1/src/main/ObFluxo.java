@@ -11,7 +11,7 @@ public class ObFluxo extends banco.Atividade {
     private RecursosList recursos;
     
     public ObFluxo(String n, TipoAtividade tp, RecursosList r){
-        super(n, 2, tp.getId()); // só pra teste
+        super(n, 0, tp.getId()); // só pra teste
         this.nome= n;
         this.tipo= tp;
         this.recursos=r;
@@ -39,8 +39,11 @@ public class ObFluxo extends banco.Atividade {
     
     // banco
     
-    @Override
-    public void salvar(ConexaoBD banco){
+    
+    public void salvar(ConexaoBD banco, int idModelo){
+        this.id_modelo = idModelo;
+        this.updateInsertString();
+        
         super.salvar(banco); // salva na tabela Atividade
         ResultSet d = banco.select("SELECT ID_ATIVIDADE FROM ATIVIDADE");
         int id_atividade = 0;
