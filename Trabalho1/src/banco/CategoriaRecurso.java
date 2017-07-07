@@ -10,9 +10,13 @@ public class CategoriaRecurso extends Entidade{
     private int id;
     private String descricao;
     
-    public CategoriaRecurso(int i, String d){
-        super("INSERT INTO CATEGORIA_RECURSO(DESCRICAO)"
+    
+    public CategoriaRecurso(String d){
+            super("INSERT INTO CATEGORIA_RECURSO(DESCRICAO)"
               + "VALUES(" + d + ")");
+    }
+    public CategoriaRecurso(int i, String d){
+        this(d);
         this.id = i;
         this.descricao = d;
     }
