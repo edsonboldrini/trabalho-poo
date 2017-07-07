@@ -6,7 +6,7 @@ public class CategoriaRecurso extends Entidade{
     
     public CategoriaRecurso(String d){
             super("INSERT INTO CATEGORIA_RECURSO(DESCRICAO)"
-              + "VALUES(" + d + ")");
+              + "VALUES('" + d + "')");
     }
     public CategoriaRecurso(int i, String d){
         this(d);

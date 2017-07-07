@@ -6,7 +6,7 @@ public class Modelo extends Entidade{
     private String Nome;
     
     public Modelo(String n){
-        super("INSERT INTO MODELO (NOME) VALUES (" + n + ");");
+        super("INSERT INTO MODELO(NOME) VALUES ('" + n + "');");
     }
     
     public Modelo(int i, String n){

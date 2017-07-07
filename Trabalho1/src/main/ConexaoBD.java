@@ -2,12 +2,13 @@ package main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexaoBD {
-    Connection c;
+    private Connection c;
     
     public ConexaoBD(String url, String user, String pass){
         try{
@@ -20,9 +21,10 @@ public class ConexaoBD {
     
     public int insert(String comando){
         try{
-            Statement stm = c.createStatement();
-            return stm.executeUpdate(comando);
+            PreparedStatement stm = this.c.prepareStatement(comando);
+            return stm.executeUpdate();
         } catch(SQLException e){
+            System.out.println("catch ConexaoBD insert: " + e.getMessage());
             return 0;
         }
     }

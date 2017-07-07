@@ -8,7 +8,7 @@ public class Atividade extends Entidade{
     
     public Atividade(String n, int idModel, int idTipo){
         super("INSERT INTO ATIVIDADE(NOME, ID_MODELO, ID_TIPOATIVIDADE)"
-             + "VALUES (" + n + "," + idModel + "," + idTipo + ")");
+             + " VALUES('" + n + "'," + idModel + "," + idTipo + ");");
         this.nome= n;
         this.id_tipoAtividade= idTipo;
         this.id_modelo= idModel;
@@ -24,6 +24,6 @@ public class Atividade extends Entidade{
     
     public void updateInsertString(){
         this.insert = "INSERT INTO ATIVIDADE(NOME, ID_MODELO, ID_TIPOATIVIDADE)"
-             + "VALUES (" + this.nome + "," + this.id_modelo + "," + this.id_tipoAtividade + ")";
+             + "VALUES ('" + this.nome + "'," + this.id_modelo + "," + this.id_tipoAtividade + ")";
     }
 }

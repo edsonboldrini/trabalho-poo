@@ -6,7 +6,7 @@ public class TipoAtividade extends Entidade{
     
     public TipoAtividade(int i, String n){
         super("INSERT INTO TIPO_ATIVIDADE(NOME)"
-                + "VALUES (" + n + "n"+")");
+                + "VALUES ('" + n + "')");
         this.id = i;
         this.Nome = n;
     }

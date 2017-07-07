@@ -4,6 +4,7 @@ package main;
 import banco.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
  public class Modelo extends banco.Modelo{
     private String modeloNome;
@@ -14,6 +15,11 @@ import java.sql.SQLException;
         this.modeloNome= mNome;
         this.ol= mOl;
     }
+    
+    public String getNome(){
+        return this.modeloNome;
+    }
+    
     public void addObjetoFluxo_pos(ObFluxo novoOb, int pos){
         this.ol.add(pos, novoOb);
     } 
@@ -34,16 +40,21 @@ import java.sql.SQLException;
         super.salvar(banco);// salva na tabela modelo
         // salvar atividades na tabela atividade
         ResultSet d = banco.select("SELECT ID_MODELO FROM MODELO");
-        int id_modelo = 0;
+        int id_modelo;
         
         try {
-            d.last();
-            id_modelo = d.getInt("ID_Modelo");
+            ArrayList al = new ArrayList();
+            while(d.next()){
+                al.add(d);
+            }
+            id_modelo = al.size();
+            System.out.println("modelo buscado no banco: " + id_modelo);
+            
+            for(ObFluxo of : ol){
+                of.salvar(banco, id_modelo);
+            }
         } catch (SQLException ex) {
-        }
-        
-        for(ObFluxo of : ol){
-            of.salvar(banco, id_modelo);
+            System.out.println("modelo select cath: " + ex.getMessage());
         }
     }
 }

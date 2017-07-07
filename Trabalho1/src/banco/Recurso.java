@@ -9,7 +9,7 @@ public class Recurso extends Entidade{
     
     public Recurso(String n,int idTipo, int idCat){
         super("INSERT INTO RECURSO(NOME, ID_TIPORECURSO, ID_CATEGORIA)"
-                + "VALUES("+n+","+idTipo+","+idCat+")");
+                + "VALUES('"+n+"',"+idTipo+","+idCat+")");
     }
     
     public Recurso(String n, int idTipo, int idCat, int idRec){

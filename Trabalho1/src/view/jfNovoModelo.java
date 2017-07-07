@@ -63,12 +63,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
         labelTipo = new javax.swing.JLabel();
         comboBoxTipo = new javax.swing.JComboBox<>();
         botaoAdicionarAtividade = new javax.swing.JButton();
-        botaoCriarModelo = new javax.swing.JButton();
         botaoEscolherRecursos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaRecursosSelecionados = new javax.swing.JTable();
+        botaoSalvarModelo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -117,13 +117,6 @@ public class jfNovoModelo extends javax.swing.JFrame {
             }
         });
 
-        botaoCriarModelo.setText("Salvar modelo");
-        botaoCriarModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarModeloActionPerformed(evt);
-            }
-        });
-
         botaoEscolherRecursos.setText("Escolher recursos");
         botaoEscolherRecursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +148,13 @@ public class jfNovoModelo extends javax.swing.JFrame {
             tabelaRecursosSelecionados.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        botaoSalvarModelo.setText("Salvar Modelo");
+        botaoSalvarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarModeloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,10 +175,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(botaoEscolherRecursos)
-                                    .addGap(32, 32, 32))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(botaoCriarModelo)))
+                                    .addGap(32, 32, 32)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -198,6 +195,10 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 .addGap(97, 97, 97)
                 .addComponent(botaoAdicionarAtividade)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoSalvarModelo)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,18 +229,13 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(botaoCriarModelo)
+                .addComponent(botaoSalvarModelo)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botaoCriarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarModeloActionPerformed
-        Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
-        m.salvar(banco);
-    }//GEN-LAST:event_botaoCriarModeloActionPerformed
-
+    
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed
         RecursosList recursosSelecionados = new RecursosList();
         int rowCount = tabelaRecursosSelecionados.getRowCount();
@@ -265,6 +261,15 @@ public class jfNovoModelo extends javax.swing.JFrame {
         jfEscolherRecursos obj = new jfEscolherRecursos(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoEscolherRecursosActionPerformed
+
+    private void botaoSalvarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarModeloActionPerformed
+        // TODO add your handling code here:
+        Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
+        m.salvar(banco);
+        System.out.println("modelo adicionado: " + m.getNome());
+        // atualizar tabela
+        this.dispose();
+    }//GEN-LAST:event_botaoSalvarModeloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,8 +308,8 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarAtividade;
-    private javax.swing.JButton botaoCriarModelo;
     private javax.swing.JButton botaoEscolherRecursos;
+    private javax.swing.JButton botaoSalvarModelo;
     private javax.swing.JTextField campoNomeAtividade;
     private javax.swing.JTextField campoNomeModelo;
     private javax.swing.JComboBox<Object> comboBoxTipo;

@@ -15,6 +15,8 @@ public abstract class Entidade {
     }
     
     public void salvar(ConexaoBD banco){
+        System.out.println("executando INSERT: " + this.insert);
         banco.insert(insert);
+        System.out.println("salvo");
     }
 }
