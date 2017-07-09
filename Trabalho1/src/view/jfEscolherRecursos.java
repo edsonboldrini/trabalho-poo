@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import banco.CategoriaRecurso;
 import main.ConexaoBD;
+import main.RecursosList;
 
 public class jfEscolherRecursos extends javax.swing.JFrame {
     private ConexaoBD banco;
@@ -155,12 +156,18 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
     private void botaoOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOKActionPerformed
         DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
         int rowsNumber = dtm.getRowCount();
-        int i;
-        CategoriaRecurso[] cr = new CategoriaRecurso[rowsNumber];
+        RecursosList cr = new RecursosList();
         
-        for(i = 0; i <  rowsNumber; i++){
-            cr[i] = (CategoriaRecurso)dtm.getValueAt(i, 0);
+        for(int i = 0; i < rowsNumber; i++){
+            cr.add(dtm.getValueAt(i, 0));
         }
+        
+        
+        /*CategoriaRecurso[] cr = new CategoriaRecurso[rowsNumber];
+        
+        for(int i = 0; i <  rowsNumber; i++){
+            cr[i] = (CategoriaRecurso)dtm.getValueAt(i, 0);
+        }*/
         
         pai.preencherTabela(cr);
         this.dispose();

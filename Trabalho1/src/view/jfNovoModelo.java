@@ -16,6 +16,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
     private ConexaoBD banco;
     private jfModelos pai;
     private ObFluxoList atividades;
+    private RecursosList recursosSelecionados;
     
     public jfNovoModelo(){}
     
@@ -42,10 +43,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
         }
     }
     
-    public void preencherTabela(Object[] o){
+    public void preencherTabela(RecursosList o){
+        this.recursosSelecionados = o;
+        
         DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
-        for(CategoriaRecurso cr : (CategoriaRecurso[]) o){
-            CategoriaRecurso[] linha = {cr};
+        for(Object cr : o){
+            CategoriaRecurso[] linha = {(CategoriaRecurso)cr};
             dtm.addRow(linha);
         }
     }
@@ -237,14 +240,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed
-        RecursosList recursosSelecionados = new RecursosList();
-        int rowCount = tabelaRecursosSelecionados.getRowCount();
-        if(rowCount > 0){
-            DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
-            for(int i = 0; i <  rowCount; i++){
-                recursosSelecionados.addLast( (CategoriaRecurso) dtm.getValueAt(i, 0));
-            }
-        }
+        System.out.println("adicionando");
         ObFluxo atividade = new ObFluxo(campoNomeAtividade.getText(),(TipoAtividade)comboBoxTipo.getSelectedItem(),recursosSelecionados);
         this.atividades.add(atividade);
         

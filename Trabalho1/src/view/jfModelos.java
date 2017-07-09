@@ -25,7 +25,7 @@ public class jfModelos extends javax.swing.JFrame {
     private void preencherTabela(ConexaoBD banco){
         DefaultTableModel dtmModelos = (DefaultTableModel)jTModelos.getModel();
         try{
-            ResultSet dados = banco.select("SELECT * FROM MODELO");
+            ResultSet dados = banco.select("SELECT NOME FROM MODELO");
             
             while(dados.next()){
                 Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
