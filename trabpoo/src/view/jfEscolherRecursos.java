@@ -46,6 +46,7 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         tabelaRecursosSelecionados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setLocation(new java.awt.Point(450, 200));
 
         labelRecursosExistentes.setText("Recursos existentes:");
 
@@ -161,13 +162,6 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         for(int i = 0; i < rowsNumber; i++){
             cr.add(dtm.getValueAt(i, 0));
         }
-        
-        
-        /*CategoriaRecurso[] cr = new CategoriaRecurso[rowsNumber];
-        
-        for(int i = 0; i <  rowsNumber; i++){
-            cr[i] = (CategoriaRecurso)dtm.getValueAt(i, 0);
-        }*/
         
         pai.preencherTabela(cr);
         this.dispose();

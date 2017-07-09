@@ -18,7 +18,6 @@ public class RecursosList extends LinkedList {
                 s = s.concat(", ");
             }
         }
-        System.out.println(s);
         return s;
     }
 }
