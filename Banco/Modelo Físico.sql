@@ -79,3 +79,18 @@ CREATE TABLE AtvProcesso_Recurso (
     FOREIGN KEY(ID_Recurso) REFERENCES Recurso (ID_Recurso),
     FOREIGN KEY(ID_AtvProcesso) REFERENCES AtvProcesso (ID_AtvProcesso)
 );
+
+INSERT INTO TIPO_ATIVIDADE(NOME) VALUES
+('Tarefa'),
+('Evento'),
+('Subprocesso')
+;
+
+INSERT INTO CATEGORIA_RECURSO(DESCRICAO) VALUES
+('Atendente'),
+('Orçamentista'),
+('Técnico'),
+('Despachante'),
+('Retificadora'),
+('Torno elétrico')
+;
