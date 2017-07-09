@@ -95,6 +95,11 @@ public class jfModelos extends javax.swing.JFrame {
         botaoEditarModelo.setText("Editar");
 
         botaoInstanciarModelo.setText("Novo Projeto");
+        botaoInstanciarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInstanciarModeloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,6 +138,11 @@ public class jfModelos extends javax.swing.JFrame {
         jfNovoModelo obj = new jfNovoModelo(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoNovoModeloActionPerformed
+
+    private void botaoInstanciarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInstanciarModeloActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botaoInstanciarModeloActionPerformed
 
     /**
      * @param args the command line arguments
