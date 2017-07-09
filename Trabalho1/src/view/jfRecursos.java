@@ -8,7 +8,10 @@ package view;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
+import main.ConexaoBD;
 
 /**
  *
@@ -19,25 +22,31 @@ public class jfRecursos extends javax.swing.JFrame {
     /**
      * Creates new form jfRecursos
      */
-    public jfRecursos() {
+    
+    private ConexaoBD banco;
+    
+    public jfRecursos(){}
+    
+    public jfRecursos(ConexaoBD b) {
         initComponents();
-        preencherTabela("src/main/data/recursos/recursos.txt");
+        this.banco = b;
+        preencherTabela(banco);
     }
     
-    private void preencherTabela(String src){
+    public ConexaoBD getConexao(){
+        return this.banco;
+    }
+    
+    private void preencherTabela(ConexaoBD banco){
         DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
         try{
-            BufferedReader buff = new BufferedReader(new FileReader(src));
-            String[] dados = new String[3];
+            ResultSet dados = banco.select("SELECT * FROM RECURSO");
             
-            while(buff.ready()){
-                String linha= buff.readLine();
-                dados = linha.split(",");
-                dtmRecursos.addRow(dados);
+            while(dados.next()){
+                Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
+                dtmRecursos.addRow(linha);
             }
-            buff.close();
-        }catch(IOException ioe){
-            ioe.printStackTrace();
+        }catch(SQLException ioe){
         }
     }
     
@@ -77,10 +86,21 @@ public class jfRecursos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTRecursos);
 
         botaoNovoRecurso.setText("Cadastrar Recurso");
+        botaoNovoRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoRecursoActionPerformed(evt);
+            }
+        });
 
         campoTextoNomeRecurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTextoNomeRecursoActionPerformed(evt);
+            }
+        });
+
+        campoTextoTipoRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoTipoRecursoActionPerformed(evt);
             }
         });
 
@@ -156,32 +176,24 @@ public class jfRecursos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoTextoCategoriaRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCategoriaRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoCategoriaRecursoActionPerformed
-
     private void campoTextoNomeRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoNomeRecursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoNomeRecursoActionPerformed
 
+    private void campoTextoTipoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoTipoRecursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoTipoRecursoActionPerformed
+
+    private void campoTextoCategoriaRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCategoriaRecursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoCategoriaRecursoActionPerformed
+
+    private void botaoNovoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoRecursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoNovoRecursoActionPerformed
+
     private void botaoExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirRecursoActionPerformed
-        int selecionado = jTRecursos.getSelectedRow();
-        System.out.println(selecionado);
-        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
-        try{
-            BufferedReader buff = new BufferedReader(new FileReader("src/main/data/recursos/recursos.txt"));
-            String[] dados = new String[3];
-            
-            while(buff.ready()){
-                String linha= buff.readLine();
-                dados = linha.split(",");
-                dtmRecursos.addRow(dados);
-            }
-            buff.close();
-        }catch(IOException ioe){
-            ioe.printStackTrace();
-        }
-        dtmRecursos.removeRow(selecionado); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_botaoExcluirRecursoActionPerformed
 
     /**
