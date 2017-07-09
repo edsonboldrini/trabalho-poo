@@ -6,10 +6,12 @@ import main.ConexaoBD;
 public class MainUI extends javax.swing.JFrame {
 
     private ConexaoBD banco;
+    private final String usuario = "postgres";  // USUARIO DO POSTGRES
+    private final String senha = "batman";      // SENHA DO POSTGRES
     
     public MainUI() {
         initComponents();
-        this.banco = new ConexaoBD("jdbc:postgresql://localhost:5432/trabPOO1","postgres","batman");
+        this.banco = new ConexaoBD("jdbc:postgresql://localhost:5432/trabPOO1",usuario,senha);
     }
 
     @SuppressWarnings("unchecked")
