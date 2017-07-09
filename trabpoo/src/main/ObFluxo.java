@@ -55,7 +55,7 @@ public class ObFluxo extends banco.Atividade {
             while(d.next()){
                 al.add(d);
             }
-            id_modelo = al.size();
+            id_atividade = al.size();
             
             for(Object cr : recursos){
                 id_categoria = ((CategoriaRecurso)cr).getId();

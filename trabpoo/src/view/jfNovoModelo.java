@@ -240,7 +240,6 @@ public class jfNovoModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed
-        System.out.println("adicionando");
         ObFluxo atividade = new ObFluxo(campoNomeAtividade.getText(),(TipoAtividade)comboBoxTipo.getSelectedItem(),recursosSelecionados);
         this.atividades.add(atividade);
         
@@ -260,11 +259,10 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
     private void botaoSalvarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarModeloActionPerformed
         // TODO add your handling code here:
-        Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);
-        m.salvar(banco);
-        System.out.println("modelo adicionado: " + m.getNome());
-        pai.resetTabela();
-        this.dispose();
+        Modelo m = new Modelo(campoNomeModelo.getText(), this.atividades);      // instancia um modelo
+        m.salvar(banco);                                                        // salva os dados no banco
+        pai.resetTabela();                                                      // atualiza a lista de modelos no banco
+        this.dispose();                                                         // fecha janela
     }//GEN-LAST:event_botaoSalvarModeloActionPerformed
 
     /**
