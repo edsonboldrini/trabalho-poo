@@ -8,14 +8,14 @@ import main.ConexaoBD;
 import banco.TipoAtividade;
 import javax.swing.table.DefaultTableModel;
 import main.Modelo;
-import main.ObFluxo;
-import main.ObFluxoList;
+import main.Atividade;
+import main.AtividadeList;
 import main.RecursosList;
 
 public class jfNovoModelo extends javax.swing.JFrame {
     private ConexaoBD banco;
     private jfModelos pai;
-    private ObFluxoList atividades;
+    private AtividadeList atividades;
     private RecursosList recursosSelecionados;
     
     public jfNovoModelo(){}
@@ -24,7 +24,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         initComponents();
         this.banco = framePai.getConexao();
         this.pai = framePai;
-        this.atividades = new ObFluxoList();
+        this.atividades = new AtividadeList();
         preencherComboBox();
     }
     
@@ -242,7 +242,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void botaoAdicionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAtividadeActionPerformed
-        ObFluxo atividade = new ObFluxo(campoNomeAtividade.getText(),(TipoAtividade)comboBoxTipo.getSelectedItem(),recursosSelecionados);
+        Atividade atividade = new Atividade(campoNomeAtividade.getText(),(TipoAtividade)comboBoxTipo.getSelectedItem(),recursosSelecionados);
         this.atividades.add(atividade);
         
         Object[] linha = {atividade.getNome(),atividade.getTipo(),atividade.getRecursos()};

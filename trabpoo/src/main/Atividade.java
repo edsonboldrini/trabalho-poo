@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ObFluxo extends banco.Atividade {
+public class Atividade extends banco.Atividade {
     private String nome;
     private TipoAtividade tipo;
     private RecursosList recursos;
     
-    public ObFluxo(String n, TipoAtividade tp, RecursosList r){
+    public Atividade(String n, TipoAtividade tp, RecursosList r){
         super(n, 0, tp.getId()); // só pra teste
         this.nome= n;
         this.tipo= tp;
@@ -55,7 +55,9 @@ public class ObFluxo extends banco.Atividade {
             while(d.next()){
                 al.add(d);
             }
-            id_atividade = al.size();
+            int lastindex = al.size();
+            d = (ResultSet)al.get(lastindex);
+            id_atividade = d.getInt("id_atividade");
             
             for(Object cr : recursos){
                 id_categoria = ((CategoriaRecurso)cr).getId();

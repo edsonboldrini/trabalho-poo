@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
  public class Modelo extends banco.Modelo{
     private String modeloNome;
-    private ObFluxoList ol;
+    private AtividadeList ol;
     
-    public Modelo(String mNome, ObFluxoList mOl){
+    public Modelo(String mNome, AtividadeList mOl){
         super(mNome);
         this.modeloNome= mNome;
         this.ol= mOl;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
         return this.modeloNome;
     }
     
-    public void addObjetoFluxo_pos(ObFluxo novoOb, int pos){
+    public void addObjetoFluxo_pos(Atividade novoOb, int pos){
         this.ol.add(pos, novoOb);
     } 
     public void removeObjetoFluxo_pos(int pos){
@@ -44,12 +44,14 @@ import java.util.ArrayList;
         
         try {
             ArrayList al = new ArrayList();
-            while(d.next()){
+            while(d.next()){                // Transfere o set para um arraylist
                 al.add(d);
             }
-            id_modelo = al.size();
+            int lastindex = al.size();      // Pega o tamanho do arraylist
+            d = (ResultSet)al.get(lastindex);// usa o tamanho do arraylist para pegar o ultimo elemento
+            id_modelo = d.getInt("id_modelo");// Pega o indice do ultimo elemento
             
-            for(ObFluxo of : ol){
+            for(Atividade of : ol){
                 of.salvar(banco, id_modelo);
             }
         } catch (SQLException ex) {
