@@ -65,9 +65,11 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
     private void resetTabelas(){
         DefaultTableModel dtmCategorias = (DefaultTableModel)jTCategorias.getModel();
         dtmCategorias.setRowCount(0);
+        preencherTabelaCategoria();
         
         DefaultTableModel dtmTipos = (DefaultTableModel)jTTipos.getModel();
         dtmTipos.setRowCount(0);
+        preencherTabelaTipo();
     }
     
     /**
