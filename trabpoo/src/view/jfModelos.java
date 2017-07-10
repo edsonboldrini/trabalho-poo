@@ -52,6 +52,7 @@ public class jfModelos extends javax.swing.JFrame {
         botaoInstanciarModelo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Modelos");
         setLocation(new java.awt.Point(450, 200));
 
         jTModelos.setModel(new javax.swing.table.DefaultTableModel(

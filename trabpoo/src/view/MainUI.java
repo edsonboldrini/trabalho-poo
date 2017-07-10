@@ -23,6 +23,7 @@ public class MainUI extends javax.swing.JFrame {
         botaoRecursos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Controle de modelos de processos");
         setLocation(new java.awt.Point(450, 200));
         setResizable(false);
 

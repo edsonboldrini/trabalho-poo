@@ -93,6 +93,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         botaoOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Adicionar tipos e categorias");
         setLocation(new java.awt.Point(450, 200));
 
         botaoAdicionarTipo.setText("Adicionar");

@@ -115,7 +115,8 @@ public class jfRecursos extends javax.swing.JFrame {
         botaoNovoTipoECat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocation(new java.awt.Point(450, 250));
+        setTitle("Recursos");
+        setLocation(new java.awt.Point(450, 200));
 
         jTRecursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

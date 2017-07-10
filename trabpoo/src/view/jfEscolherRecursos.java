@@ -46,6 +46,7 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         tabelaRecursosSelecionados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Selecionar recursos");
         setLocation(new java.awt.Point(450, 200));
 
         labelRecursosExistentes.setText("Recursos existentes:");
