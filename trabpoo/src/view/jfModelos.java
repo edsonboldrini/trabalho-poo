@@ -85,7 +85,7 @@ public class jfModelos extends javax.swing.JFrame {
             jTModelos.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        botaoNovoModelo.setText("Novo");
+        botaoNovoModelo.setText("Novo Modelo");
         botaoNovoModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoNovoModeloActionPerformed(evt);
@@ -95,6 +95,11 @@ public class jfModelos extends javax.swing.JFrame {
         botaoEditarModelo.setText("Editar");
 
         botaoInstanciarModelo.setText("Novo Projeto");
+        botaoInstanciarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInstanciarModeloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,9 +111,9 @@ public class jfModelos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoNovoModelo)
-                        .addGap(44, 44, 44)
-                        .addComponent(botaoEditarModelo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoEditarModelo)
+                        .addGap(18, 18, 18)
                         .addComponent(botaoInstanciarModelo)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -133,6 +138,11 @@ public class jfModelos extends javax.swing.JFrame {
         jfNovoModelo obj = new jfNovoModelo(this);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoNovoModeloActionPerformed
+
+    private void botaoInstanciarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInstanciarModeloActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botaoInstanciarModeloActionPerformed
 
     /**
      * @param args the command line arguments

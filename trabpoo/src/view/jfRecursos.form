@@ -141,6 +141,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNomeRecurso">
+<<<<<<< HEAD
+=======
+    </Component>
+    <Component class="javax.swing.JTextField" name="campoTextoTipoRecurso">
+>>>>>>> 9aabe3b909fe19e9ead10aa2358b7bee760a2afb
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoCategoriaRecurso">
     </Component>
