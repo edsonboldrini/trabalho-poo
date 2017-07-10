@@ -7,6 +7,8 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import banco.CategoriaRecurso;
+import banco.TipoRecurso;
 import javax.swing.table.DefaultTableModel;
 import main.ConexaoBD;
 
@@ -54,6 +56,14 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         }
     }
     
+    private void resetTabelas(){
+        DefaultTableModel dtmCategorias = (DefaultTableModel)jTCategorias.getModel();
+        dtmCategorias.setRowCount(0);
+        
+        DefaultTableModel dtmTipos = (DefaultTableModel)jTTipos.getModel();
+        dtmTipos.setRowCount(0);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +86,11 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         botaoAdicionarTipo.setText("Adicionar");
+        botaoAdicionarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarTipoActionPerformed(evt);
+            }
+        });
 
         jTTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +115,11 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         }
 
         botaoAdicionarCategoria.setText("Adicionar");
+        botaoAdicionarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarCategoriaActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -171,6 +191,20 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoAdicionarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarTipoActionPerformed
+        // TODO add your handling code here:
+        TipoRecurso tr = new TipoRecurso(campoTextoTipo.getText());
+        tr.salvar(banco);
+        this.resetTabelas();
+    }//GEN-LAST:event_botaoAdicionarTipoActionPerformed
+
+    private void botaoAdicionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaRecurso cr = new CategoriaRecurso(campoTextoCategoria.getText());
+        cr.salvar(banco);
+        this.resetTabelas();
+    }//GEN-LAST:event_botaoAdicionarCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
