@@ -18,14 +18,16 @@ import main.ConexaoBD;
  */
 public class jfNovoTipoCategoria extends javax.swing.JFrame {
     private ConexaoBD banco;
+    private jfRecursos pai;
     /**
      * Creates new form jfNovoTipoCategoria
      */
     public jfNovoTipoCategoria(){}
     
-    public jfNovoTipoCategoria(ConexaoBD banco) {
+    public jfNovoTipoCategoria(ConexaoBD banco, jfRecursos framePai) {
         initComponents();
         this.banco = banco;
+        this.pai = framePai;
         preencherTabelaTipo();
         preencherTabelaCategoria();
     }
@@ -86,6 +88,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTCategorias = new javax.swing.JTable();
         campoTextoCategoria = new javax.swing.JTextField();
+        botaoOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +152,13 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
             jTCategorias.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        botaoOK.setText("OK");
+        botaoOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoOKActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,6 +181,10 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoAdicionarCategoria)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoOK)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,6 +204,8 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoOK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -209,6 +225,12 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         cr.salvar(banco);
         this.resetTabelas();
     }//GEN-LAST:event_botaoAdicionarCategoriaActionPerformed
+
+    private void botaoOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOKActionPerformed
+        // TODO add your handling code here:
+        pai.resetComboBox();
+        this.dispose();
+    }//GEN-LAST:event_botaoOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +270,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarCategoria;
     private javax.swing.JButton botaoAdicionarTipo;
+    private javax.swing.JButton botaoOK;
     private javax.swing.JTextField campoTextoCategoria;
     private javax.swing.JTextField campoTextoTipo;
     private javax.swing.JScrollPane jScrollPane1;

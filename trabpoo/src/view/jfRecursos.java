@@ -149,6 +149,11 @@ public class jfRecursos extends javax.swing.JFrame {
         });
 
         botaoNovoTipoECat.setText("Cadastrar novos tipos e categorias");
+        botaoNovoTipoECat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoTipoECatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,6 +223,12 @@ public class jfRecursos extends javax.swing.JFrame {
     private void botaoExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirRecursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoExcluirRecursoActionPerformed
+
+    private void botaoNovoTipoECatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoTipoECatActionPerformed
+        // TODO add your handling code here:
+        jfNovoTipoCategoria obj = new jfNovoTipoCategoria(banco, this);
+        obj.setVisible(true);
+    }//GEN-LAST:event_botaoNovoTipoECatActionPerformed
 
     /**
      * @param args the command line arguments
