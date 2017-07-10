@@ -41,8 +41,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="campoTextoTipoRecurso" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Component id="labelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelTipo" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxTipo" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -75,8 +75,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="campoTextoNomeRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoTextoTipoRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoTextoCategoriaRecurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxTipo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoNovoRecurso" min="-2" max="-2" attributes="0"/>
@@ -141,19 +141,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNomeRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoNomeRecursoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="campoTextoTipoRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoTipoRecursoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoCategoriaRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoCategoriaRecursoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelRecurso">
       <Properties>
@@ -177,6 +166,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirRecursoActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboBoxTipo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

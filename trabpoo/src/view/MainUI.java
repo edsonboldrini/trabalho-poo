@@ -91,7 +91,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void botaoRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRecursosActionPerformed
         // TODO add your handling code here:
-        jfRecursos obj = new jfRecursos();
+        jfRecursos obj = new jfRecursos(banco);
         obj.setVisible(true);
     }//GEN-LAST:event_botaoRecursosActionPerformed
 

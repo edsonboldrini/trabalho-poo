@@ -2,13 +2,13 @@ package banco;
 
 public class TipoAtividade extends Entidade{
     private int id;
-    private String Nome;
+    private String nome;
     
     public TipoAtividade(int i, String n){
         super("INSERT INTO TIPO_ATIVIDADE(NOME)"
                 + "VALUES ('" + n + "')");
         this.id = i;
-        this.Nome = n;
+        this.nome = n;
     }
     
     public int getId(){
@@ -17,6 +17,6 @@ public class TipoAtividade extends Entidade{
     
     @Override
     public String toString(){
-        return this.Nome;
+        return this.nome;
     }
 }

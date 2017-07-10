@@ -15,8 +15,8 @@ public class Recurso extends Entidade{
     public Recurso(String n, int idTipo, int idCat, int idRec){
         this(n,idTipo,idCat);
         this.nome= n;
-        this.id_tipoRecurso= idTipo;
-        this.id_categoria= idCat;
-        this.id_recurso= idRec;
+        this.id_tipoRecurso = idTipo;
+        this.id_categoria = idCat;
+        this.id_recurso = idRec;
     }         
   }

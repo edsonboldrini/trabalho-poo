@@ -5,6 +5,8 @@
  */
 package view;
 
+import banco.Recurso;
+import banco.TipoRecurso;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,6 +33,7 @@ public class jfRecursos extends javax.swing.JFrame {
         initComponents();
         this.banco = b;
         preencherTabela(banco);
+        preencherComboBox();
     }
     
     public ConexaoBD getConexao(){
@@ -40,15 +43,29 @@ public class jfRecursos extends javax.swing.JFrame {
     private void preencherTabela(ConexaoBD banco){
         DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
         try{
-            ResultSet dados = banco.select("SELECT * FROM RECURSO");
+            ResultSet dados = banco.select("SELECT RECURSO.NOME AS NOME, TIPO_RECURSO.NOME AS NOME_RECURSO, CATEGORIA_RECURSO.DESCRICAO AS DESCRICAO FROM RECURSO INNER JOIN TIPO_RECURSO ON RECURSO.ID_TIPORECURSO = TIPO_RECURSO.ID_TIPORECURSO INNER JOIN CATEGORIA_RECURSO ON RECURSO.ID_CATEGORIA = CATEGORIA_RECURSO.ID_CATEGORIA;");
             
             while(dados.next()){
-                Object[] linha = {/*dados.getInt("ID_Modelo"),*/ dados.getString("nome")};
+                Object[] linha = {dados.getString("nome"),dados.getString("nome_recurso"),dados.getString("descricao")};
                 dtmRecursos.addRow(linha);
             }
         }catch(SQLException ioe){
         }
     }
+    
+    private void preencherComboBox(){
+        ResultSet dados = banco.select("SELECT * FROM TIPO_RECURSO");
+        
+        try{
+            while(dados.next()){
+                //Recurso r = new Recurso(campoTextoNomeRecurso.getText(), comboBoxTipo.getSelectedItem(), campoTextoCategoriaRecurso.getText());
+                TipoRecurso tr = new TipoRecurso(dados.getInt("id_tiporecurso"), dados.getString("nome"));
+                comboBoxTipo.addItem(tr);
+            }
+        } catch(SQLException e){
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,12 +81,12 @@ public class jfRecursos extends javax.swing.JFrame {
         jTRecursos = new javax.swing.JTable();
         botaoNovoRecurso = new javax.swing.JButton();
         campoTextoNomeRecurso = new javax.swing.JTextField();
-        campoTextoTipoRecurso = new javax.swing.JTextField();
         campoTextoCategoriaRecurso = new javax.swing.JTextField();
         labelRecurso = new javax.swing.JLabel();
         labelTipo = new javax.swing.JLabel();
         labelDescricao = new javax.swing.JLabel();
         botaoExcluirRecurso = new javax.swing.JButton();
+        comboBoxTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(450, 250));
@@ -89,24 +106,6 @@ public class jfRecursos extends javax.swing.JFrame {
         botaoNovoRecurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoNovoRecursoActionPerformed(evt);
-            }
-        });
-
-        campoTextoNomeRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoNomeRecursoActionPerformed(evt);
-            }
-        });
-
-        campoTextoTipoRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoTipoRecursoActionPerformed(evt);
-            }
-        });
-
-        campoTextoCategoriaRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoCategoriaRecursoActionPerformed(evt);
             }
         });
 
@@ -137,8 +136,8 @@ public class jfRecursos extends javax.swing.JFrame {
                             .addComponent(labelRecurso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoTextoTipoRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelTipo))
+                            .addComponent(labelTipo)
+                            .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelDescricao)
@@ -162,8 +161,8 @@ public class jfRecursos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTextoNomeRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoTipoRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoCategoriaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTextoCategoriaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoNovoRecurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,20 +175,14 @@ public class jfRecursos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoTextoNomeRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoNomeRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoNomeRecursoActionPerformed
-
-    private void campoTextoTipoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoTipoRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoTipoRecursoActionPerformed
-
-    private void campoTextoCategoriaRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCategoriaRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoCategoriaRecursoActionPerformed
-
     private void botaoNovoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoRecursoActionPerformed
         // TODO add your handling code here:
+        //DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
+        //Object[] linha = {campoTextoNomeRecurso.getText(),comboBoxTipo.getSelected(),campoTextoCategoriaRecurso.getText()};
+        //dtmRecursos.addRow(linha);
+        
+        //Recurso recurso = new Recurso(campoTextoNomeRecurso.getText(),campoTextoTipoRecurso.getText(),campoTextoCategoriaRecurso.getText());
+        
     }//GEN-LAST:event_botaoNovoRecursoActionPerformed
 
     private void botaoExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirRecursoActionPerformed
@@ -236,7 +229,7 @@ public class jfRecursos extends javax.swing.JFrame {
     private javax.swing.JButton botaoNovoRecurso;
     private javax.swing.JTextField campoTextoCategoriaRecurso;
     private javax.swing.JTextField campoTextoNomeRecurso;
-    private javax.swing.JTextField campoTextoTipoRecurso;
+    private javax.swing.JComboBox<Object> comboBoxTipo;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTRecursos;
