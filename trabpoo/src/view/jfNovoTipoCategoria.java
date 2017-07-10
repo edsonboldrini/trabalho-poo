@@ -36,11 +36,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         
     }
     
-    private void resetTabelas(){
-        DefaultTableModel dtm = (DefaultTableModel)tabelaTipo.getModel();
-        dtm.setRowCount(0);
-        
-        dtm = (DefaultTableModel)tabelaCategoria.getModel();
+    private void resetTabela(DefaultTableModel dtm){
         dtm.setRowCount(0);
     }
     
@@ -176,14 +172,14 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         TipoRecurso tr = new TipoRecurso(campoTextoTipo.getText());
         tr.salvar(banco);
-        this.resetTabelas();
+        this.resetTabela((DefaultTableModel)tabelaTipo.getModel());
     }//GEN-LAST:event_botaoAdicionarTipoActionPerformed
 
     private void botaoAdicionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarCategoriaActionPerformed
         // TODO add your handling code here:
         CategoriaRecurso cr = new CategoriaRecurso(campoTextoCategoria.getText());
         cr.salvar(banco);
-        this.resetTabelas();
+        this.resetTabela((DefaultTableModel)tabelaCategoria.getModel());
     }//GEN-LAST:event_botaoAdicionarCategoriaActionPerformed
 
     /**
