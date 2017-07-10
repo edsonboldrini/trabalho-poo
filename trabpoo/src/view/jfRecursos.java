@@ -72,11 +72,25 @@ public class jfRecursos extends javax.swing.JFrame {
     }
     
     private void preencherComboBoxCategoria(){
+        ResultSet dados = banco.select("SELECT * FROM CATEGORIA_RECURSO");
         
+        try{
+            while(dados.next()){
+                //Recurso r = new Recurso(campoTextoNomeRecurso.getText(), comboBoxTipo.getSelectedItem(), campoTextoCategoriaRecurso.getText());
+                CategoriaRecurso cr = new CategoriaRecurso(dados.getInt("id_categoria"), dados.getString("descricao"));
+                comboBoxCategoria.addItem(cr);
+            }
+        } catch(SQLException e){
+        }
     }
     
-    public void resetCombo(){
+    public void resetComboBox(){
         // Reseta os dois combobox
+        comboBoxTipo.setSelectedIndex(0);
+        comboBoxCategoria.setSelectedIndex(0);
+        preencherComboBoxTipo();
+        preencherComboBoxCategoria();
+        
     }
     
     /**
