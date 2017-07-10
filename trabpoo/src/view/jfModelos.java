@@ -85,7 +85,7 @@ public class jfModelos extends javax.swing.JFrame {
             jTModelos.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        botaoNovoModelo.setText("Novo");
+        botaoNovoModelo.setText("Novo Modelo");
         botaoNovoModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoNovoModeloActionPerformed(evt);
@@ -111,9 +111,9 @@ public class jfModelos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoNovoModelo)
-                        .addGap(44, 44, 44)
-                        .addComponent(botaoEditarModelo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoEditarModelo)
+                        .addGap(18, 18, 18)
                         .addComponent(botaoInstanciarModelo)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );

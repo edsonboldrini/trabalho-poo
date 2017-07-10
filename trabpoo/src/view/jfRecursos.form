@@ -141,19 +141,10 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNomeRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoNomeRecursoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoTipoRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoTipoRecursoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoCategoriaRecurso">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoCategoriaRecursoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelRecurso">
       <Properties>

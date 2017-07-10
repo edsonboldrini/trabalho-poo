@@ -92,24 +92,6 @@ public class jfRecursos extends javax.swing.JFrame {
             }
         });
 
-        campoTextoNomeRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoNomeRecursoActionPerformed(evt);
-            }
-        });
-
-        campoTextoTipoRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoTipoRecursoActionPerformed(evt);
-            }
-        });
-
-        campoTextoCategoriaRecurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoCategoriaRecursoActionPerformed(evt);
-            }
-        });
-
         labelRecurso.setText("Recurso");
 
         labelTipo.setText("Tipo");
@@ -175,18 +157,6 @@ public class jfRecursos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoTextoNomeRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoNomeRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoNomeRecursoActionPerformed
-
-    private void campoTextoTipoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoTipoRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoTipoRecursoActionPerformed
-
-    private void campoTextoCategoriaRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCategoriaRecursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoCategoriaRecursoActionPerformed
 
     private void botaoNovoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoRecursoActionPerformed
         // TODO add your handling code here:
