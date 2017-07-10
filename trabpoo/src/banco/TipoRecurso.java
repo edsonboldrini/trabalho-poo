@@ -13,9 +13,14 @@ public class TipoRecurso extends Entidade {
     private int id;
     private String nome;
     
-    public TipoRecurso(int i, String n){
+    public TipoRecurso(String n){
         super("INSERT INTO TIPO_RECURSO(NOME)"
                 + "VALUES ('" + n + "')");
+        this.nome = n;
+    }
+    
+    public TipoRecurso(int i, String n){
+        this(n);
         this.id = i;
         this.nome = n;
     }
