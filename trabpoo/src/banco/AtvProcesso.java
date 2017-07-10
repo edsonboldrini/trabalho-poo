@@ -12,7 +12,11 @@ public class AtvProcesso extends Entidade{
     public AtvProcesso(String terminado, String dataInicio, String dataFim, int idAtividade, int idProcesso){
         super("INSERT INTO ATVPROCESSO(TERMINADO, DATAINICIO, DATAFIM, IDATIVIDADE, IDPROCESSO"
                 + "VALUES (" + terminado +","+ dataInicio +","+ dataFim +","+ idAtividade +","+ idProcesso + ")");
-        
+        this.terminado= terminado;
+        this.dataInicio= dataInicio;
+        this.dataFim= dataFim;
+        this.idAtividade= idAtividade;
+        this.idProcesso= idProcesso;
     }
     
     public AtvProcesso(int idOb, String terminado, String dataInicio, String dataFim, int idAtividade, int idProcesso){
@@ -24,7 +28,6 @@ public class AtvProcesso extends Entidade{
         this.dataFim= dataFim;
         this.idAtividade= idAtividade;
         this.idProcesso= idProcesso;
-        
     }
     
 }

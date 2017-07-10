@@ -6,16 +6,13 @@
 package main;
 
 import banco.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
  public class Recurso extends banco.Recurso{
     private String nome;
     
     
-    public Recurso(String rNome, int idTipo, int idCat){
-        super(rNome, idTipo, idCat);
+    public Recurso(String rNome, TipoRecurso tipo, CategoriaRecurso cat){
+        super(rNome, tipo.getId(), cat.getId());
         this.nome = rNome;
     }
     
@@ -27,6 +24,7 @@ import java.util.ArrayList;
     
     @Override
     public void salvar(ConexaoBD banco){
-        super.salvar(banco);        
+        super.salvar(banco);        // salva na tabela recurso
+        
     }
  }

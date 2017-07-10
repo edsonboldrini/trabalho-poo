@@ -5,11 +5,9 @@
  */
 package view;
 
-import banco.Recurso;
+import banco.CategoriaRecurso;
+import main.Recurso;
 import banco.TipoRecurso;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +31,8 @@ public class jfRecursos extends javax.swing.JFrame {
         initComponents();
         this.banco = b;
         preencherTabela(banco);
-        preencherComboBox();
+        preencherComboBoxTipo();
+        preencherComboBoxCategoria();
     }
     
     public ConexaoBD getConexao(){
@@ -53,7 +52,13 @@ public class jfRecursos extends javax.swing.JFrame {
         }
     }
     
-    private void preencherComboBox(){
+    private void resetTabela(){
+        DefaultTableModel dtm = (DefaultTableModel)jTRecursos.getModel();
+        dtm.setRowCount(0);
+        this.preencherTabela(banco);
+    }
+    
+    private void preencherComboBoxTipo(){
         ResultSet dados = banco.select("SELECT * FROM TIPO_RECURSO");
         
         try{
@@ -66,6 +71,13 @@ public class jfRecursos extends javax.swing.JFrame {
         }
     }
     
+    private void preencherComboBoxCategoria(){
+        
+    }
+    
+    public void resetCombo(){
+        // Reseta os dois combobox
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,12 +93,13 @@ public class jfRecursos extends javax.swing.JFrame {
         jTRecursos = new javax.swing.JTable();
         botaoNovoRecurso = new javax.swing.JButton();
         campoTextoNomeRecurso = new javax.swing.JTextField();
-        campoTextoCategoriaRecurso = new javax.swing.JTextField();
         labelRecurso = new javax.swing.JLabel();
         labelTipo = new javax.swing.JLabel();
         labelDescricao = new javax.swing.JLabel();
         botaoExcluirRecurso = new javax.swing.JButton();
         comboBoxTipo = new javax.swing.JComboBox<>();
+        comboBoxCategoria = new javax.swing.JComboBox<>();
+        botaoNovoTipoECat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(450, 250));
@@ -113,7 +126,7 @@ public class jfRecursos extends javax.swing.JFrame {
 
         labelTipo.setText("Tipo");
 
-        labelDescricao.setText("Descrição");
+        labelDescricao.setText("Categoria");
 
         botaoExcluirRecurso.setText("Excluir Recurso");
         botaoExcluirRecurso.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +134,8 @@ public class jfRecursos extends javax.swing.JFrame {
                 botaoExcluirRecursoActionPerformed(evt);
             }
         });
+
+        botaoNovoTipoECat.setText("Cadastrar novos tipos e categorias");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,17 +152,20 @@ public class jfRecursos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelTipo)
-                            .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelDescricao)
-                            .addComponent(campoTextoCategoriaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelDescricao)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(comboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoNovoRecurso, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botaoExcluirRecurso, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(botaoExcluirRecurso))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botaoNovoRecurso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(botaoNovoTipoECat)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,10 +179,12 @@ public class jfRecursos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTextoNomeRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoCategoriaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoNovoRecurso)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoNovoRecurso)
+                    .addComponent(botaoNovoTipoECat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,12 +197,9 @@ public class jfRecursos extends javax.swing.JFrame {
 
     private void botaoNovoRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoRecursoActionPerformed
         // TODO add your handling code here:
-        //DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
-        //Object[] linha = {campoTextoNomeRecurso.getText(),comboBoxTipo.getSelected(),campoTextoCategoriaRecurso.getText()};
-        //dtmRecursos.addRow(linha);
-        
-        //Recurso recurso = new Recurso(campoTextoNomeRecurso.getText(),campoTextoTipoRecurso.getText(),campoTextoCategoriaRecurso.getText());
-        
+        Recurso r = new Recurso(campoTextoNomeRecurso.getText(),(TipoRecurso)comboBoxTipo.getSelectedItem(),(CategoriaRecurso)comboBoxCategoria.getSelectedItem());
+        r.salvar(banco);
+        this.resetTabela();
     }//GEN-LAST:event_botaoNovoRecursoActionPerformed
 
     private void botaoExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirRecursoActionPerformed
@@ -227,8 +244,9 @@ public class jfRecursos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoExcluirRecurso;
     private javax.swing.JButton botaoNovoRecurso;
-    private javax.swing.JTextField campoTextoCategoriaRecurso;
+    private javax.swing.JButton botaoNovoTipoECat;
     private javax.swing.JTextField campoTextoNomeRecurso;
+    private javax.swing.JComboBox<Object> comboBoxCategoria;
     private javax.swing.JComboBox<Object> comboBoxTipo;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
