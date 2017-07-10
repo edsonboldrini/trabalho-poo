@@ -86,11 +86,10 @@ public class jfRecursos extends javax.swing.JFrame {
     
     public void resetComboBox(){
         // Reseta os dois combobox
-        comboBoxTipo.setSelectedIndex(0);
-        comboBoxCategoria.setSelectedIndex(0);
+        comboBoxTipo.removeAllItems();
+        comboBoxCategoria.removeAllItems();
         preencherComboBoxTipo();
         preencherComboBoxCategoria();
-        
     }
     
     /**

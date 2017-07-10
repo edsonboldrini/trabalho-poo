@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import banco.CategoriaRecurso;
 import banco.TipoRecurso;
 import javax.swing.table.DefaultTableModel;
@@ -29,15 +31,42 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
     }
     
     private void preencherTabelaTipo(){
-        
+        DefaultTableModel dtmTipos = (DefaultTableModel)jTTipos.getModel();
+        try{
+            ResultSet dados = banco.select("SELECT * FROM TIPO_RECURSO");
+            
+            while(dados.next()){
+                Object[] linha = {dados.getString("nome")};
+                dtmTipos.addRow(linha);
+            }
+        }catch(SQLException ioe){
+        }
     }
     
     private void preencherTabelaCategoria(){
-        
+        DefaultTableModel dtmCategorias = (DefaultTableModel)jTCategorias.getModel();
+        try{
+            ResultSet dados = banco.select("SELECT * FROM CATEGORIA_RECURSO");
+            
+            while(dados.next()){
+                Object[] linha = {dados.getString("nome")};
+                dtmCategorias.addRow(linha);
+            }
+        }catch(SQLException ioe){
+        }
     }
     
+<<<<<<< HEAD
     private void resetTabela(DefaultTableModel dtm){
         dtm.setRowCount(0);
+=======
+    private void resetTabelas(){
+        DefaultTableModel dtmCategorias = (DefaultTableModel)jTCategorias.getModel();
+        dtmCategorias.setRowCount(0);
+        
+        DefaultTableModel dtmTipos = (DefaultTableModel)jTTipos.getModel();
+        dtmTipos.setRowCount(0);
+>>>>>>> e0cbf4da92b8c151cc7d80e5fa15d2240168f40e
     }
     
     /**
@@ -52,11 +81,11 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         campoTextoTipo = new javax.swing.JTextField();
         botaoAdicionarTipo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaTipo = new javax.swing.JTable();
+        jTTipos = new javax.swing.JTable();
         botaoAdicionarCategoria = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaCategoria = new javax.swing.JTable();
+        jTCategorias = new javax.swing.JTable();
         campoTextoCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +97,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
             }
         });
 
-        tabelaTipo.setModel(new javax.swing.table.DefaultTableModel(
+        jTTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,10 +113,10 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaTipo.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelaTipo);
-        if (tabelaTipo.getColumnModel().getColumnCount() > 0) {
-            tabelaTipo.getColumnModel().getColumn(0).setResizable(false);
+        jTTipos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTTipos);
+        if (jTTipos.getColumnModel().getColumnCount() > 0) {
+            jTTipos.getColumnModel().getColumn(0).setResizable(false);
         }
 
         botaoAdicionarCategoria.setText("Adicionar");
@@ -99,7 +128,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        tabelaCategoria.setModel(new javax.swing.table.DefaultTableModel(
+        jTCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -115,10 +144,10 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaCategoria.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tabelaCategoria);
-        if (tabelaCategoria.getColumnModel().getColumnCount() > 0) {
-            tabelaCategoria.getColumnModel().getColumn(0).setResizable(false);
+        jTCategorias.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTCategorias);
+        if (jTCategorias.getColumnModel().getColumnCount() > 0) {
+            jTCategorias.getColumnModel().getColumn(0).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,7 +254,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable tabelaCategoria;
-    private javax.swing.JTable tabelaTipo;
+    private javax.swing.JTable jTCategorias;
+    private javax.swing.JTable jTTipos;
     // End of variables declaration//GEN-END:variables
 }
