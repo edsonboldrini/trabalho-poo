@@ -56,17 +56,16 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         }
     }
     
-<<<<<<< HEAD
     private void resetTabela(DefaultTableModel dtm){
         dtm.setRowCount(0);
-=======
+    }
+    
     private void resetTabelas(){
         DefaultTableModel dtmCategorias = (DefaultTableModel)jTCategorias.getModel();
         dtmCategorias.setRowCount(0);
         
         DefaultTableModel dtmTipos = (DefaultTableModel)jTTipos.getModel();
         dtmTipos.setRowCount(0);
->>>>>>> e0cbf4da92b8c151cc7d80e5fa15d2240168f40e
     }
     
     /**
@@ -201,14 +200,14 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         TipoRecurso tr = new TipoRecurso(campoTextoTipo.getText());
         tr.salvar(banco);
-        this.resetTabela((DefaultTableModel)tabelaTipo.getModel());
+        this.resetTabelas();
     }//GEN-LAST:event_botaoAdicionarTipoActionPerformed
 
     private void botaoAdicionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarCategoriaActionPerformed
         // TODO add your handling code here:
         CategoriaRecurso cr = new CategoriaRecurso(campoTextoCategoria.getText());
         cr.salvar(banco);
-        this.resetTabela((DefaultTableModel)tabelaCategoria.getModel());
+        this.resetTabelas();
     }//GEN-LAST:event_botaoAdicionarCategoriaActionPerformed
 
     /**
