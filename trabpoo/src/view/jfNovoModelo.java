@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import main.ConexaoBD;
 import banco.TipoAtividade;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.Modelo;
 import main.Atividade;
@@ -26,6 +28,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         this.pai = framePai;
         this.atividades = new AtividadeList();
         preencherComboBox();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public ConexaoBD getConexao(){
@@ -46,10 +49,10 @@ public class jfNovoModelo extends javax.swing.JFrame {
     public void preencherTabela(RecursosList o){
         this.recursosSelecionados = o;
         
-        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        DefaultTableModel dtmAtividades = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
         for(Object cr : o){
             CategoriaRecurso[] linha = {(CategoriaRecurso)cr};
-            dtm.addRow(linha);
+            dtmAtividades.addRow(linha);
         }
     }
 
@@ -60,7 +63,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         campoNomeModelo = new javax.swing.JTextField();
         labelNomeModelo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaAtividades = new javax.swing.JTable();
+        jTAtividades = new javax.swing.JTable();
         labelAtividade = new javax.swing.JLabel();
         campoNomeAtividade = new javax.swing.JTextField();
         labelTipo = new javax.swing.JLabel();
@@ -72,6 +75,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaRecursosSelecionados = new javax.swing.JTable();
         botaoSalvarModelo = new javax.swing.JButton();
+        botaoExcluirAtividade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo modelo");
@@ -81,7 +85,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
 
         labelNomeModelo.setText("Nome do modelo:");
 
-        tabelaAtividades.setModel(new javax.swing.table.DefaultTableModel(
+        jTAtividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -104,12 +108,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaAtividades.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelaAtividades);
-        if (tabelaAtividades.getColumnModel().getColumnCount() > 0) {
-            tabelaAtividades.getColumnModel().getColumn(0).setResizable(false);
-            tabelaAtividades.getColumnModel().getColumn(1).setResizable(false);
-            tabelaAtividades.getColumnModel().getColumn(2).setResizable(false);
+        jTAtividades.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTAtividades);
+        if (jTAtividades.getColumnModel().getColumnCount() > 0) {
+            jTAtividades.getColumnModel().getColumn(0).setResizable(false);
+            jTAtividades.getColumnModel().getColumn(1).setResizable(false);
+            jTAtividades.getColumnModel().getColumn(2).setResizable(false);
         }
 
         labelAtividade.setText("Atividade:");
@@ -161,6 +165,13 @@ public class jfNovoModelo extends javax.swing.JFrame {
             }
         });
 
+        botaoExcluirAtividade.setText("Excluir atividade");
+        botaoExcluirAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirAtividadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,6 +199,9 @@ public class jfNovoModelo extends javax.swing.JFrame {
                                 .addComponent(labelNomeModelo)
                                 .addGap(14, 14, 14)
                                 .addComponent(campoNomeModelo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(botaoSalvarModelo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelAtividade)
@@ -195,16 +209,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(59, 59, 59)
                                         .addComponent(campoNomeAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 1, Short.MAX_VALUE)))
+                                .addGap(0, 1, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoAdicionarAtividade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoExcluirAtividade)))
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(botaoAdicionarAtividade)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoSalvarModelo)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +240,11 @@ public class jfNovoModelo extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoEscolherRecursos)))
-                .addGap(18, 18, 18)
-                .addComponent(botaoAdicionarAtividade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoAdicionarAtividade)
+                    .addComponent(botaoExcluirAtividade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(botaoSalvarModelo)
@@ -247,12 +259,12 @@ public class jfNovoModelo extends javax.swing.JFrame {
         this.atividades.add(atividade);
         
         Object[] linha = {atividade.getNome(),atividade.getTipo(),atividade.getRecursos()};
-        DefaultTableModel dtm = (DefaultTableModel) tabelaAtividades.getModel();
-        dtm.addRow(linha);
+        DefaultTableModel dtmAtividades = (DefaultTableModel) jTAtividades.getModel();
+        dtmAtividades.addRow(linha);
         
         campoNomeAtividade.setText("");
-        dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
-        dtm.setRowCount(0);
+        dtmAtividades = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        dtmAtividades.setRowCount(0);
     }//GEN-LAST:event_botaoAdicionarAtividadeActionPerformed
 
     private void botaoEscolherRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEscolherRecursosActionPerformed
@@ -267,6 +279,18 @@ public class jfNovoModelo extends javax.swing.JFrame {
         pai.resetTabela();                                                      // atualiza a lista de modelos no banco
         this.dispose();                                                         // fecha janela
     }//GEN-LAST:event_botaoSalvarModeloActionPerformed
+
+    private void botaoExcluirAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirAtividadeActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtmAtividades = (DefaultTableModel)jTAtividades.getModel();
+        if (jTAtividades.getSelectedRow() >= 0){
+            dtmAtividades.removeRow(jTAtividades.getSelectedRow());
+            Object r = jTAtividades.getSelectedRow();
+            jTAtividades.setModel(dtmAtividades);
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
+    }//GEN-LAST:event_botaoExcluirAtividadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,6 +330,7 @@ public class jfNovoModelo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarAtividade;
     private javax.swing.JButton botaoEscolherRecursos;
+    private javax.swing.JButton botaoExcluirAtividade;
     private javax.swing.JButton botaoSalvarModelo;
     private javax.swing.JTextField campoNomeAtividade;
     private javax.swing.JTextField campoNomeModelo;
@@ -314,10 +339,10 @@ public class jfNovoModelo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTAtividades;
     private javax.swing.JLabel labelAtividade;
     private javax.swing.JLabel labelNomeModelo;
     private javax.swing.JLabel labelTipo;
-    private javax.swing.JTable tabelaAtividades;
     private javax.swing.JTable tabelaRecursosSelecionados;
     // End of variables declaration//GEN-END:variables
 }

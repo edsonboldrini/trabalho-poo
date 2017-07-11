@@ -55,10 +55,10 @@ public class Atividade extends banco.Atividade {
             while(d.next()){
                 al.add(d);
             }
-            int lastindex = al.size();
-            d = (ResultSet)al.get(lastindex);
-            id_atividade = d.getInt("id_atividade");
-            
+            //int lastindex = al.size();
+            //d = (ResultSet)al.get(lastindex);
+            //id_atividade = d.getInt("id_atividade");
+            id_atividade = al.size();
             for(Object cr : recursos){
                 id_categoria = ((CategoriaRecurso)cr).getId();
                 AtvRecurso ar = new AtvRecurso(id_categoria, id_atividade);

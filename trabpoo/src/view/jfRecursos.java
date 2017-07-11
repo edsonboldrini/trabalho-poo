@@ -10,6 +10,8 @@ import main.Recurso;
 import banco.TipoRecurso;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.ConexaoBD;
 
@@ -33,6 +35,7 @@ public class jfRecursos extends javax.swing.JFrame {
         preencherTabela(banco);
         preencherComboBoxTipo();
         preencherComboBoxCategoria();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public ConexaoBD getConexao(){
@@ -53,8 +56,8 @@ public class jfRecursos extends javax.swing.JFrame {
     }
     
     private void resetTabela(){
-        DefaultTableModel dtm = (DefaultTableModel)jTRecursos.getModel();
-        dtm.setRowCount(0);
+        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
+        dtmRecursos.setRowCount(0);
         this.preencherTabela(banco);
     }
     
@@ -223,6 +226,16 @@ public class jfRecursos extends javax.swing.JFrame {
 
     private void botaoExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirRecursoActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
+        if (jTRecursos.getSelectedRow() >= 0){
+            //int index = jTRecursos.getSelectedRow();
+            //Recurso r = new Recurso(jTRecursos.getValueAt(index, 0), jTRecursos.getValueAt(index, 1), jTRecursos.getValueAt(index, 2));
+            dtmRecursos.removeRow(jTRecursos.getSelectedRow());
+            //r.excluir(banco);
+            //jTRecursos.setModel(dtmRecursos);
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
     }//GEN-LAST:event_botaoExcluirRecursoActionPerformed
 
     private void botaoNovoTipoECatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoTipoECatActionPerformed

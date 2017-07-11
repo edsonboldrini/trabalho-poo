@@ -47,10 +47,11 @@ import java.util.ArrayList;
             while(d.next()){                // Transfere o set para um arraylist
                 al.add(d);
             }
-            int lastindex = al.size();      // Pega o tamanho do arraylist
-            d = (ResultSet)al.get(lastindex);// usa o tamanho do arraylist para pegar o ultimo elemento
-            id_modelo = d.getInt("id_modelo");// Pega o indice do ultimo elemento
-            
+            //
+            //int lastindex = al.size();      // Pega o tamanho do arraylist
+            //d = (ResultSet)al.get(lastindex);// usa o tamanho do arraylist para pegar o ultimo elemento
+            //id_modelo = d.getInt("id_modelo");// Pega o indice do ultimo elemento
+            id_modelo = al.size();
             for(Atividade of : ol){
                 of.salvar(banco, id_modelo);
             }

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import banco.CategoriaRecurso;
 import banco.TipoRecurso;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import main.ConexaoBD;
 
@@ -30,6 +31,7 @@ public class jfNovoTipoCategoria extends javax.swing.JFrame {
         this.pai = framePai;
         preencherTabelaTipo();
         preencherTabelaCategoria();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     private void preencherTabelaTipo(){

@@ -4,6 +4,8 @@ package view;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import main.ConexaoBD;
 
 public class jfModelos extends javax.swing.JFrame {
@@ -16,6 +18,7 @@ public class jfModelos extends javax.swing.JFrame {
         initComponents();
         this.banco = b;
         preencherTabela(banco);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public ConexaoBD getConexao(){
@@ -50,6 +53,7 @@ public class jfModelos extends javax.swing.JFrame {
         botaoNovoModelo = new javax.swing.JButton();
         botaoEditarModelo = new javax.swing.JButton();
         botaoInstanciarModelo = new javax.swing.JButton();
+        botaoExcluirModelo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modelos");
@@ -60,7 +64,7 @@ public class jfModelos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Modelo"
+                "Modelos"
             }
         ) {
             Class[] types = new Class [] {
@@ -102,20 +106,29 @@ public class jfModelos extends javax.swing.JFrame {
             }
         });
 
+        botaoExcluirModelo.setText("Excluir Modelo");
+        botaoExcluirModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirModeloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoNovoModelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoEditarModelo)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoInstanciarModelo)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoExcluirModelo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(botaoNovoModelo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoEditarModelo)
+                            .addGap(18, 18, 18)
+                            .addComponent(botaoInstanciarModelo))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,7 +139,9 @@ public class jfModelos extends javax.swing.JFrame {
                     .addComponent(botaoNovoModelo)
                     .addComponent(botaoEditarModelo)
                     .addComponent(botaoInstanciarModelo))
-                .addGap(41, 41, 41)
+                .addGap(3, 3, 3)
+                .addComponent(botaoExcluirModelo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -144,6 +159,18 @@ public class jfModelos extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_botaoInstanciarModeloActionPerformed
+
+    private void botaoExcluirModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirModeloActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtmModelos = (DefaultTableModel)jTModelos.getModel();
+        if (jTModelos.getSelectedRow() >= 0){
+            dtmModelos.removeRow(jTModelos.getSelectedRow());
+            Object r = jTModelos.getSelectedRow();
+            jTModelos.setModel(dtmModelos);
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
+    }//GEN-LAST:event_botaoExcluirModeloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +209,7 @@ public class jfModelos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoEditarModelo;
+    private javax.swing.JButton botaoExcluirModelo;
     private javax.swing.JButton botaoInstanciarModelo;
     private javax.swing.JButton botaoNovoModelo;
     private javax.swing.JScrollPane jScrollPane1;

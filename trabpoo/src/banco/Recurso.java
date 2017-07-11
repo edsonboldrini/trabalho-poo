@@ -5,7 +5,7 @@ public class Recurso extends Entidade{
     private String nome;
     private int id_tipoRecurso;
     private int id_categoria;
-    private int id_recurso;
+    protected int id_recurso;
     
     public Recurso(String n,int idTipo, int idCat){
         super("INSERT INTO RECURSO(NOME, ID_TIPORECURSO, ID_CATEGORIA)"

@@ -1,6 +1,7 @@
 
 package view;
 
+import javax.swing.JFrame;
 import main.ConexaoBD;
 
 public class MainUI extends javax.swing.JFrame {
@@ -12,6 +13,7 @@ public class MainUI extends javax.swing.JFrame {
     public MainUI() {
         initComponents();
         this.banco = new ConexaoBD("jdbc:postgresql://localhost:5432/trabpoo1",usuario,senha);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

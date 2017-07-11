@@ -27,4 +27,9 @@ import banco.*;
         super.salvar(banco);        // salva na tabela recurso
         
     }
+    
+    public void excluir(ConexaoBD banco){
+        banco.insert("DELETE FROM RECURSO WHERE id_recurso = '"+this.id_recurso+"'"); // exclui na tabela recurso
+    }
+    
  }

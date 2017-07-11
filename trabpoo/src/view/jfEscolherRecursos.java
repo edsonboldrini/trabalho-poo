@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import banco.CategoriaRecurso;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import main.ConexaoBD;
 import main.RecursosList;
 
@@ -19,6 +21,8 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         this.banco = framePai.getConexao();
         this.pai = framePai;
         preencherComboBox();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
     }
     
     private void preencherComboBox(){
@@ -43,7 +47,8 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
         botaoOK = new javax.swing.JButton();
         comboBoxRecursos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaRecursosSelecionados = new javax.swing.JTable();
+        jTRecursos = new javax.swing.JTable();
+        botaoExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Selecionar recursos");
@@ -74,12 +79,12 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
             }
         });
 
-        tabelaRecursosSelecionados.setModel(new javax.swing.table.DefaultTableModel(
+        jTRecursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Recurso"
+                "Recursos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -90,11 +95,18 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaRecursosSelecionados.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabelaRecursosSelecionados);
-        if (tabelaRecursosSelecionados.getColumnModel().getColumnCount() > 0) {
-            tabelaRecursosSelecionados.getColumnModel().getColumn(0).setResizable(false);
+        jTRecursos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTRecursos);
+        if (jTRecursos.getColumnModel().getColumnCount() > 0) {
+            jTRecursos.getColumnModel().getColumn(0).setResizable(false);
         }
+
+        botaoExcluir.setText("Excluir");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,19 +115,23 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelRecursosExistentes)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoAdicionar))
-                    .addComponent(labelRecursosSelecionados)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(botaoRemover)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botaoOK, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelRecursosExistentes)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboBoxRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelRecursosSelecionados))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,8 +142,10 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
                     .addComponent(botaoAdicionar)
                     .addComponent(comboBoxRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelRecursosExistentes))
-                .addGap(18, 18, 18)
-                .addComponent(labelRecursosSelecionados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelRecursosSelecionados)
+                    .addComponent(botaoExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -142,31 +160,44 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
 
     private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
         CategoriaRecurso cr = (CategoriaRecurso)comboBoxRecursos.getSelectedItem();
-        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        DefaultTableModel dtmRecursos = (DefaultTableModel) jTRecursos.getModel();
         CategoriaRecurso[] linha = {cr};
-        dtm.addRow(linha);
+        dtmRecursos.addRow(linha);
     }//GEN-LAST:event_botaoAdicionarActionPerformed
 
     private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
-        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
+        DefaultTableModel dtmRecursos = (DefaultTableModel) jTRecursos.getModel();
         try{
-            dtm.removeRow(tabelaRecursosSelecionados.getSelectedRow());
+            dtmRecursos.removeRow(jTRecursos.getSelectedRow());
         } catch(Exception e){
         }
     }//GEN-LAST:event_botaoRemoverActionPerformed
 
     private void botaoOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOKActionPerformed
-        DefaultTableModel dtm = (DefaultTableModel) tabelaRecursosSelecionados.getModel();
-        int rowsNumber = dtm.getRowCount();
+        DefaultTableModel dtmRecursos = (DefaultTableModel) jTRecursos.getModel();
+        int rowsNumber = dtmRecursos.getRowCount();
         RecursosList cr = new RecursosList();
         
         for(int i = 0; i < rowsNumber; i++){
-            cr.add(dtm.getValueAt(i, 0));
+            cr.add(dtmRecursos.getValueAt(i, 0));
         }
         
         pai.preencherTabela(cr);
         this.dispose();
     }//GEN-LAST:event_botaoOKActionPerformed
+
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        DefaultTableModel dtmRecursos = (DefaultTableModel)jTRecursos.getModel();
+        if (jTRecursos.getSelectedRow() >= 0){
+            dtmRecursos.removeRow(jTRecursos.getSelectedRow());
+            Object r = jTRecursos.getSelectedRow();
+            jTRecursos.setModel(dtmRecursos);
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
+    }//GEN-LAST:event_botaoExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,12 +236,13 @@ public class jfEscolherRecursos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionar;
+    private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoOK;
     private javax.swing.JButton botaoRemover;
     private javax.swing.JComboBox<Object> comboBoxRecursos;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTRecursos;
     private javax.swing.JLabel labelRecursosExistentes;
     private javax.swing.JLabel labelRecursosSelecionados;
-    private javax.swing.JTable tabelaRecursosSelecionados;
     // End of variables declaration//GEN-END:variables
 }
